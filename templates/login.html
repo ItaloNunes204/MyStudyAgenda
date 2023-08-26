@@ -13,12 +13,8 @@
         <nav class="navbar">
             <a class="logo" href="">MyStudyAgenda</a> 
             <ul class="nav-menu">
-                <li class="nav-item"><a class="nav-link" href="">Cadastro Materia</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Cadastro Evento</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Cadastro Atividade</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Consulta</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Editar Conta</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Sair</a></li>
+                <li class="nav-item"><a class="nav-link" href="">Cadastrar Conta</a></li>
+                <li class="nav-item"><a class="nav-link" href="">Login</a></li>
             </ul>
             <div class="hamburguer">
                 <span class="bar"></span>
@@ -28,8 +24,37 @@
         </nav>
     </header>
     <main>
-        
+        <form action="" method="post" class="container-form">
+            <div class="card-form">
+                <h1>Login</h1>
+
+                {% set mensagens = get_flashed_messages() %}
+                    {% if mensagens %}
+                        <div class="erro">
+                            {% for msg in mensagens %}
+                                <p>{{msg}}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                
+                <div class="label-float">
+                    <input type="text" id="email" name="email" oninput="validaEmail()" required>
+                    <label for="email" id="labelEmail">Email</label>
+                </div>
+                <div class="label-float">
+                    <input type="password" id="senha" name="senha" required oninput="validaSenha()">
+                    <label for="senha" id="labelSenha">Senha</label>
+                    <i class="fa fa-eye" aria-hidden="true" id="btn-senha"  onclick="mostraSenha()"></i>
+                </div>
+                <div class="justify-center">
+                    <button class="btn-cadastrar" id="btn-cadastrar" name="btn-cadastrar" type="submit" onclick="trocarBotao()">Cadastrar</button>
+                    <button class="btn-loading" id="btn-loading" name="btn-loading"><i class="fa fa-spinner" aria-hidden="true" id="loading"></i>
+                        Carregando</button>
+                </div>
+            </div>
+        </form>
     </main>
+    <br>
     <footer class="footer">
         <div class="container-footer">
             <div class="row">
@@ -68,5 +93,6 @@
         </div>
    </footer>
     <script src="../static/navbar.js"></script>
+    <script src="../static/mostraSenha.js"></script>
 </body>
 </html>

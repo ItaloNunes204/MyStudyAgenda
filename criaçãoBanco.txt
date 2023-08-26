@@ -1,0 +1,76 @@
+create schema mystudyagenda;
+commit;
+
+create table mystudyagenda.conta(
+nome varchar(200),
+senha varchar(100),
+curso text,
+periodo int,
+universidade text,
+notificacaoInterna boolean,
+notificacaoExterna boolean,
+nCreditos int,
+email varchar(200) primary key
+);
+commit;
+
+create table mystudyagenda.evento(
+nome varchar(200),
+inicio date,
+fim date,
+intervaliInteiro boolean,
+observacao text,
+estado boolean,
+horario time,
+Lugar text,
+email text,
+idEvento int auto_increment primary key
+);
+commit;
+
+create table mystudyagenda.atividade(
+nome varchar(200),
+nota float,
+notaAtividade float,
+intervaliInteiro boolean,
+inicio date,
+fim date,
+horario time,
+estado boolean,
+observacao text,
+email text,
+nomeMateria varchar(200),
+idMateria int,
+idAtividade int auto_increment primary key
+);
+commit;
+
+create table mystudyagenda.materia(
+nome varchar(200),
+inicio date,
+fim date,
+nCreditos int,
+nota float,
+observacao text,
+dias text,
+horario time,
+email text,
+estado boolean,
+idMateria int auto_increment primary key
+);
+commit;
+
+create table mystudyagenda.tarefas(
+nome varchar(200),
+inicio date,
+fim date,
+intervaliInteiro boolean,
+horario time,
+lugar text,
+estado boolean,
+observacao text,
+tipo text,
+email text,
+idTarefa int auto_increment primary key
+);
+commit;

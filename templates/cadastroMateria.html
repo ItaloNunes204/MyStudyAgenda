@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../static/favicon.png" >
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">  
+    <link rel="stylesheet" href="../static/style.css">
+    <title>MyStudyAgenda</title>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <a class="logo" href="">MyStudyAgenda</a> 
+            <ul class="nav-menu">
+                <li class="nav-item"><a class="nav-link" href="">Cadastro Materia</a></li>
+                <li class="nav-item"><a class="nav-link" href="">Cadastro Evento</a></li>
+                <li class="nav-item"><a class="nav-link" href="">Cadastro Atividade</a></li>
+                <li class="nav-item"><a class="nav-link" href="">Consulta</a></li>
+                <li class="nav-item"><a class="nav-link" href="">Editar Conta</a></li>
+                <li class="nav-item"><a class="nav-link" href="">Sair</a></li>
+            </ul>
+            <div class="hamburguer">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <form action="" method="post" class="container-form">
+            <div class="card-form">
+                <h1>Cadastro de Materia</h1>
+                <div class="label-float">
+                    <input type="text" id="nome" name="nome" oninput="validaNome()" required>
+                    <label for="nome" id="labelNome">Nome</label>
+                </div>
+                <div class="label-float-constante">
+                    <input type="date" id="inicio" name="inicio" oninput="validaInicio()" required>
+                    <label for="inicio" id="labelInicio">Data de Inicio</label>
+                </div>
+                <div class="label-float-constante">
+                    <input type="date" id="fim" name="fim" oninput="validaFim()" required>
+                    <label for="fim" id="labelFim">Data do Termino</label>
+                </div>
+                <div class="label-float-constante">
+                    <input type="time" id="horario" name="horario" oninput="validaHorario()" required>
+                    <label for="horario" id="labelHorario">Horario</label>
+                </div>
+                <div class="label-float">
+                    <input type="text" id="lugar" name="lugar" oninput="validaLugar()" required>
+                    <label for="lugar" id="labelLugar">Lugar</label>
+                </div>
+                <div class="label-float">
+                    <input type="number" id="creditos" name="creditos" oninput="validaCreditos()" required>
+                    <label for="creditos" id="labelCreditos">N° Creditos</label>
+                </div>
+                <div class="label-float">
+                    <input type="text" id="observacao" name="observacao" oninput="validaObservacao()" required>
+                    <label for="observacao" id="labelObservacao">Observação</label>
+                </div>
+                <br>
+                <div class="justify-center">
+                    <p class="texto-dia">Quais são os dias da aula?</p>
+                </div>
+                <br>
+                <div class="lista-dias">
+                    <div class="dias-esquerda">
+                        <ul>
+                            <li>
+                                <input type="checkbox" name="segunda" id="segunda" class="dia">
+                                <label for="segunda" class="nome-dia">Segunda</label>
+                            </li>
+                            <br>
+                            <li>
+                                <input type="checkbox" name="terca" id="terca" class="dia">
+                                <label for="terca" class="nome-dia">Terça</label>
+                            </li>
+                            <br>
+                            <li>
+                                <input type="checkbox" name="quarta" id="quarta" class="dia">
+                                <label for="quarta" class="nome-dia">Quarta</label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="dias-direita">
+                        <ul>
+                            <li>
+                                <input type="checkbox" name="quinta" id="quinta" class="dia">
+                                <label for="quinta" class="nome-dia">Quinta</label>
+                            </li>
+                            <br>
+                            <li>
+                                <input type="checkbox" name="sexta" id="sexta" class="dia">
+                                <label for="sexta" class="nome-dia">Sexta</label>
+                            </li>
+                            <br>
+                            <li>
+                                <input type="checkbox" name="sabado" id="sabado" class="dia">
+                                <label for="sabado" class="nome-dia">Sabado</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="justify-center">
+                    <button class="btn-cadastrar" id="btn-cadastrar" name="btn-cadastrar" type="submit" onclick="trocarBotao()">Cadastrar</button>
+                    <button class="btn-loading" id="btn-loading" name="btn-loading"><i class="fa fa-spinner" aria-hidden="true" id="loading"></i>Carregando</button>
+                </div>
+            </div>
+        </form>
+    </main>
+    <br>
+    <footer class="footer">
+        <div class="container-footer">
+            <div class="row">
+                <div class="footer-col">
+                    <h4>Projeto</h4>
+                    <ul class="lista_footer">
+                        <li><a href="#">Sobre</a></li>
+                        <li><a href="#">Seviços</a></li>
+                        <li><a href="#">privacidade</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Funcionalidades</h4>
+                    <ul>
+                        <li><a href="#">Cadastro Atividade </a></li>
+                        <li><a href="#">Cadastro Evento</a></li>
+                        <li><a href="#">Cadastro Materia</a></li>
+                        <li><a href="#">Consulta</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>follow us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </footer>
+    <script src="../static/navbar.js"></script>
+    <script src="../static/mostraSenha.js"></script>
+</body>
+</html>
