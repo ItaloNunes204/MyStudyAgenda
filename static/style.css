@@ -253,7 +253,7 @@ section#inicio {
     justify-content: center;
     align-items: center;
 }
-section#inicio .conteudo {
+s ection#inicio .conteudo {
     width: 100%;
     color: white;
     text-align: center;
@@ -278,6 +278,98 @@ section#inicio .icone {
     display: inline-block;
     background-color: red; 
     padding: 10px; 
+}
+
+table{
+    width: 70%;
+    border-collapse: collapse;
+}
+caption{
+    font-size: 1.2rem;
+    font-weight: bolder;
+    padding: 20px;
+}
+th,td{
+    border: 1px solid black;
+    padding: 10px;
+}
+tr{
+    background-color: #fff;
+}
+tr:nth-child(even){
+    background-color: #85b3d2;
+}
+.container-tabela{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: auto;
+}
+#cabecalho-tabela{
+    background-color: #197BBD;
+}
+.btn-tabela{
+    width: 60px;
+    height: 20px;
+    border-radius: 5px;
+    background-color: #579ece;
+    color: #fff;
+}
+.btn-tabela:hover{
+    background-color: #197BBD;
+}
+.pesquisa-tabela{
+    float: right;
+    border-radius: 40px;
+    padding: 10px;
+    background-color: #197BBD;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.pesquisa-tabela button{
+    background: #197BBD;
+    border-radius: 50%;
+    outline: none;
+    height: 40px;
+    width: 40px;
+    justify-content: center;
+    align-items: center;
+    transition: .5s;
+}
+.pesquisa-tabela input{
+    border: none;
+    background: none;
+    outline: none;
+    padding: 0;
+    color: white;
+    font-size: 16px;
+    line-height: 40px;
+    width: 0;
+    transition: .5s;
+}
+.pesquisa-tabela input::placeholder{
+    color: white;
+}
+.pesquisa-tabela:hover input {
+    width: 240px;
+    padding: 0 6px;
+}
+.pesquisa-tabela:hover button {
+    background: #fff;
+}
+.btn-voltar{
+    float: left;
+    background: #197BBD;
+    border-radius: 10%;
+    height: 40px;
+    width: 60px;
+    margin-top: 20px;
+}
+.btn-voltar:hover{
+    background: #579ece;
+    color: #fff;
 }
 
 /* fim main */

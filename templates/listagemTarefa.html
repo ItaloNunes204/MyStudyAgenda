@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../static/favicon.png" >
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">  
+    <link rel="stylesheet" href="../static/style.css">
+    <title>MyStudyAgenda</title>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <a class="logo" href="">MyStudyAgenda</a> 
+            <ul class="nav-menu">
+                <li class="nav-item"><a class="nav-link" href="">Cadastro Materia</a></li>
+                <li class="nav-item"><a class="nav-link" href="">Cadastro Evento</a></li>
+                <li class="nav-item"><a class="nav-link" href="">Cadastro Atividade</a></li>
+                <li class="nav-item"><a class="nav-link" href="">Consulta</a></li>
+                <li class="nav-item"><a class="nav-link" href="">Editar Conta</a></li>
+                <li class="nav-item"><a class="nav-link" href="">Sair</a></li>
+            </ul>
+            <div class="hamburguer">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+    <main>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div id="alerta" class="mensagem-alerta">
+                        <p>
+                            <a href=""><i class="fa fa-times" aria-hidden="true"></i></a>
+                            {{ message }}
+                        </p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <div class="container-tabela">
+            <table>
+                <caption>
+                    <h2>listagem de Tarefas</h2>
+                    <div class="pesquisa-tabela">
+                        <form action="">
+                            <input type="text" class="pesquisa-txt" placeholder="pesquisar">
+                            <button><i class="fa fa-search" aria-hidden="true"></i></button>
+                        </form>
+                    </div>
+                    <button class="btn-voltar">voltar</button>
+                </caption>
+                <thead>
+                    <tr id="cabecalho-tabela">
+                        <th>Nome</th>
+                        <th>Inicio</th>
+                        <th>Fim</th>
+                        <th>horario</th>
+                        <th>lugar</th>
+                        <th>Estado</th>
+                        <th>Observacao</th>
+                        <th>tipo</th>
+                        <th>Editar</th>
+                        <th>Apagar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tarefa in tarefas %}
+                        <tr>
+                            <th>{{tarefa.nome}}</th>
+                            <th>{{tarefa.inicio}}</th>
+                            <th>{{tarefa.fim}}</th>
+                            <th>{{tarefa.horario}}</th>
+                            <th>{{tarefa.lugar}}</th>
+                            <th>{{tarefa.estado}}</th>
+                            <th>{{tarefa.observacao}}</th>
+                            <th>{{tarefa.tipo}}</th>
+                            <th><a href="">Editar</a></th>
+                            <th><a href="">Apagar</a></th>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+    <footer class="footer">
+        <div class="container-footer">
+            <div class="row">
+                <div class="footer-col">
+                    <h4>Projeto</h4>
+                    <ul class="lista_footer">
+                        <li><a href="#">Sobre</a></li>
+                        <li><a href="#">Seviços</a></li>
+                        <li><a href="#">privacidade</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Funcionalidades</h4>
+                    <ul>
+                        <li><a href="#">Cadastro Atividade </a></li>
+                        <li><a href="#">Cadastro Evento</a></li>
+                        <li><a href="#">Cadastro Materia</a></li>
+                        <li><a href="#">Consulta</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>follow us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </footer>
+    <script src="../static/navbar.js"></script>
+</body>
+</html>
