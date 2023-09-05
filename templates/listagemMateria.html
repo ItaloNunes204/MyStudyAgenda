@@ -45,9 +45,9 @@
                 <caption>
                     <h2>listagem de materias</h2>
                     <div class="pesquisa-tabela">
-                        <form action="">
-                            <input type="text" class="pesquisa-txt" placeholder="pesquisar">
-                            <button><i class="fa fa-search" aria-hidden="true"></i></button>
+                        <form action="" method="post">
+                            <input type="text" class="pesquisa-txt" placeholder="pesquisar" name="pesquisa" id="pesquisa">
+                            <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                         </form>
                     </div>
                     <button class="btn-voltar">voltar</button>
@@ -55,8 +55,8 @@
                 <thead>
                     <tr id="cabecalho-tabela">
                         <th>Nome</th>
-                        <th>Inicio</th>
-                        <th>Fim</th>
+                        <th>Data de inicio</th>
+                        <th>Data de termino</th>
                         <th>N° Creditos</th>
                         <th>Nota</th>
                         <th>Observacao</th>
@@ -79,8 +79,8 @@
                             <th>{{materia.dias}}</th>
                             <th>{{materia.horario}}</th>
                             <th>{{materia.estado}}</th>
-                            <th><a href="">Editar</a></th>
-                            <th><a href="">Apagar</a></th>
+                            <th><a href="" class="editar_apagar">Editar</a></th>
+                            <th><a href="" class="editar_apagar">Apagar</a></th>
                         </tr>
                     {% endfor %}
                 </tbody>

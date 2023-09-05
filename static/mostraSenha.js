@@ -132,7 +132,7 @@ function validaPeriodo(){
         input.setAttribute('style','border-color: red')
     } else {
         label.setAttribute('style','color: green')
-        label.innerHTML = 'Nome'
+        label.innerHTML = 'Periodo'
         input.setAttribute('style','border-color: green')
     }
 }
@@ -156,17 +156,6 @@ function validaUniversidade(){
 function validaInicio(){
     const input = document.getElementById('inicio')
     const label = document.getElementById('labelInicio')
-    if(input.value.length != 0){
-        label.setAttribute('style','color: green')
-        input.setAttribute('style','border-color: green')
-    }else{
-        label.setAttribute('style','color: blue')
-        input.setAttribute('style','border-color: blue')
-    }
-}
-function validaFim(){
-    const input = document.getElementById('fim')
-    const label = document.getElementById('labelFim')
     if(input.value.length != 0){
         label.setAttribute('style','color: green')
         input.setAttribute('style','border-color: green')
@@ -277,4 +266,37 @@ function trocarBotao(){
 
     cadastrar.style.display = 'none';
     carregando.style.display = 'block';
+}
+function validaData() {
+    const labelInicio = document.getElementById('labelInicio');
+    const labelFim = document.getElementById('labelFim');
+    const inputInicio = document.getElementById('inicio');
+    const inputFim = document.getElementById('fim');
+    const inf_inicio = inputInicio.value;
+    const inf_fim = inputFim.value;
+
+    if (inf_inicio === "" || inf_fim === "") {
+        labelFim.style.color = 'blue';
+        labelFim.innerHTML = 'Data do Término';
+        inputFim.style.borderColor = 'blue';
+    } else {
+        const inicio = new Date(inf_inicio);
+        const fim = new Date(inf_fim);
+
+        if (fim <= inicio) {
+            labelInicio.style.color = 'red';
+            labelInicio.innerHTML = 'Data de Início * O término não pode ser antes do início';
+            inputInicio.style.borderColor = 'red';
+            labelFim.style.color = 'red';
+            labelFim.innerHTML = 'Data do Término * O término não pode ser antes do início';
+            inputFim.style.borderColor = 'red';
+        } else {
+            labelInicio.style.color = 'green';
+            labelInicio.innerHTML = 'Data de Início';
+            inputInicio.style.borderColor = 'green';
+            labelFim.style.color = 'green';
+            labelFim.innerHTML = 'Data do Término';
+            inputFim.style.borderColor = 'green';
+        }
+    }
 }

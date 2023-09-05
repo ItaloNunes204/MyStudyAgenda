@@ -275,13 +275,16 @@ section#inicio .icone {
     background-color: #f0f0f0;
 }
 .erro{
-    display: inline-block;
-    background-color: red; 
-    padding: 10px; 
+    background-color: red;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    width: 100%;
 }
 
 table{
-    width: 70%;
+    width: 100%;
     border-collapse: collapse;
 }
 caption{
@@ -301,7 +304,7 @@ tr:nth-child(even){
 }
 .container-tabela{
     display: flex;
-    justify-content: center;
+    justify-content: column;
     align-items: center;
     overflow-x: auto;
 }
@@ -370,6 +373,9 @@ tr:nth-child(even){
 .btn-voltar:hover{
     background: #579ece;
     color: #fff;
+}
+.editar_apagar{
+    color:#000;
 }
 
 /* fim main */
