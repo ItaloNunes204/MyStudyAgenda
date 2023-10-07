@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+    <main>
+        <form action="" method="post" class="container-form">
+            <div class="card-form">
+                <h1>Modifica Tarefas</h1>
+                <div class="label-float">
+                    <input type="text" id="nome" name="nome" oninput="validaNome()" required value="{{tarefa.nome}}">
+                    <label for="nome" id="labelNome">Nome</label>
+                </div>
+                <div class="label-float-constante">
+                    <input type="date" id="inicio" name="inicio" oninput="validaInicio()" required value="2023-02-01">
+                    <label for="inicio" id="labelInicio">Data de Inicio</label>
+                </div>
+                <div class="label-float-constante">
+                    <input type="date" id="fim" name="fim" oninput="validaData()" required value="2023-02-01">
+                    <label for="fim" id="labelFim">Data do Termino</label>
+                </div>
+                <div>
+                    <p class="justify-center">Exibir atividade ao longo do período.</p>
+                    <br>
+                    {% if tarefa.intervalo == True%}
+                        <div class="justify-center">
+                            <input type="checkbox" checked id="intervalo" name="intervalo">
+                        </div>
+                    {% else %}
+                        <div class="justify-center">
+                            <input type="checkbox" id="intervalo" name="intervalo">
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="label-float-constante">
+                    <input type="time" id="horario" name="horario" oninput="validaHorario()" required value="22:30">
+                    <label for="horario" id="labelHorario">Horario</label>
+                </div>
+                <div class="label-float">
+                    <input type="text" id="lugar" name="lugar" oninput="validaLugar()" required value="{{tarefa.lugar}}">
+                    <label for="lugar" id="labelLugar">Lugar</label>
+                </div>
+                <div class="label-float">
+                    <input type="text" id="observacao" name="observacao" oninput="validaObservacao()" required value="tarefa.observacao">
+                    <label for="observacao" id="labelObservacao">Observação</label>
+                </div>
+                <div class="label-float">
+                    <input type="text" id="tipo" name="tipo" oninput="validaTipo()" required value="{{tarefa.tipo}}">
+                    <label for="tipo " id="labelTipo">Tipo</label>
+                </div>
+                <div class="justify-center">
+                    <button class="btn-cadastrar" id="btn-cadastrar" name="btn-cadastrar" type="submit" onclick="trocarBotao()">Modificar</button>
+                    <button class="btn-loading" id="btn-loading" name="btn-loading"><i class="fa fa-spinner" aria-hidden="true" id="loading"></i>Modificando</button>
+                </div>
+            </div>
+        </form>
+    </main>
+{% endblock %}

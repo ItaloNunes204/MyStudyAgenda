@@ -1,32 +1,5 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../static/favicon.png" >
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">  
-    <link rel="stylesheet" href="../static/style.css">
-    <title>MyStudyAgenda</title>
-</head>
-<body>
-    <header class="header">
-        <nav class="navbar">
-            <a class="logo" href="">MyStudyAgenda</a> 
-            <ul class="nav-menu">
-                <li class="nav-item"><a class="nav-link" href="">Cadastro Materia</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Cadastro Evento</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Cadastro Atividade</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Consulta</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Editar Conta</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Sair</a></li>
-            </ul>
-            <div class="hamburguer">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </nav>
-    </header>
+{% extends 'base.html' %}
+{% block conteudo %}
     <main>
         <form action="" method="post" class="container-form">
             <div class="card-form">
@@ -36,92 +9,57 @@
                     <label for="nome" id="labelNome">Nome</label>
                 </div>
                 <div class="label-float-constante">
-                    <input type="date" id="inicio" name="inicio" oninput="validaInicio()" value="{{atividade.inicio}}" required>
+                    <input type="date" id="inicio" name="inicio" oninput="validaInicio()" value="2023-02-01" required>
                     <label for="inicio" id="labelInicio">Data de Inicio</label>
                 </div>
                 <div class="label-float-constante">
-                    <input type="date" id="fim" name="fim" oninput="validaFim()" value="{{atividade.fim}}" required>
+                    <input type="date" id="fim" name="fim" oninput="validaFim()" value="2023-02-01" required>
                     <label for="fim" id="labelFim">Data do Termino</label>
                 </div>
                 <div>
                     <p class="justify-center">Exibir atividade ao longo do período.</p>
                     <br>
                     <div class="justify-center">
-                        {%  if atividade.intervalo == 1 %}
+                        {%  if atividade.intervalo == True %}
                             <input type="checkbox" checked>
                         {% else %}
-                            <input type="checkbox" checked>
+                            <input type="checkbox">
                         {% endif %}
                     </div>
                 </div>
                 <div class="label-float-constante">
-                    <input type="time" id="horario" name="horario" oninput="validaHorario()" value="{{atividade.horario}}" required>
+                    <input type="time" id="horario" name="horario" oninput="validaHorario()" value="22:30" required>
                     <label for="horario" id="labelHorario">Horario</label>
                 </div>
                 <div class="label-float">
-                    <input type="number" step="0.01" id="nota" name="nota" oninput="validaNota()" value="{{atividade.nota}}" required>
-                    <label for="nota" id="labelNota">Nota da Atividadde </label>
+                    <input type="number" step="0.01" id="nota_atividade" name="nota_atividade" oninput="validaNota()" value="{{atividade.nota}}" required>
+                    <label for="nota_atividade" id="labelNotaAtividade">Nota da Atividadde </label>
+                </div>
+                <div class="label-float">
+                    <input type="number" step="0.01" id="nota" name="nota" value="{{atividade.nota}}" required>
+                    <label for="nota" id="labelNotas">Nota obtida </label>
                 </div>
                 <br>
                 <div>
                     <select id="materia" name="materia" required>
                         <option value="{{atividade.materia}}">{{atividade.materia}}</option>
                         {% for materia in materias%}
-                            <option value={{materia.nome}}>{{materia.nome}}</option>
+                            {% if atividade.materia != materia.nome %}
+                                <option value={{materia.nome}}>{{materia.nome}}</option>
+                            {% endif %}
                         {%endfor%}
                     </select>
                 </div>
                 <br>
                 <div class="label-float">
-                    <input type="text" id="observacao" name="observacao" oninput="validaObservacao()" required>
+                    <input type="text" id="observacao" name="observacao" oninput="validaObservacao()" required value="{{materia.observacao}}">
                     <label for="observacao" id="labelObservacao">Observação</label>
                 </div>
                 <div class="justify-center">
-                    <button class="btn-cadastrar" id="btn-cadastrar" name="btn-cadastrar" type="submit" onclick="trocarBotao()">Cadastrar</button>
-                    <button class="btn-loading" id="btn-loading" name="btn-loading"><i class="fa fa-spinner" aria-hidden="true" id="loading"></i>Carregando</button>
+                    <button class="btn-cadastrar" id="btn-cadastrar" name="btn-cadastrar" type="submit" onclick="trocarBotao()">Modificar</button>
+                    <button class="btn-loading" id="btn-loading" name="btn-loading"><i class="fa fa-spinner" aria-hidden="true" id="loading"></i>Modificando</button>
                 </div>
             </div>
         </form>
     </main>
-    <br>
-    <footer class="footer">
-        <div class="container-footer">
-            <div class="row">
-                <div class="footer-col">
-                    <h4>Projeto</h4>
-                    <ul class="lista_footer">
-                        <li><a href="#">Sobre</a></li>
-                        <li><a href="#">Seviços</a></li>
-                        <li><a href="#">privacidade</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Contato</h4>
-                    <ul>
-                        <li><a href="#">Contato</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Funcionalidades</h4>
-                    <ul>
-                        <li><a href="#">Cadastro Atividade </a></li>
-                        <li><a href="#">Cadastro Evento</a></li>
-                        <li><a href="#">Cadastro Materia</a></li>
-                        <li><a href="#">Consulta</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>follow us</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                        <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-   </footer>
-    <script src="../static/navbar.js"></script>
-    <script src="../static/mostraSenha.js"></script>
-</body>
-</html>
+{% endblock %}

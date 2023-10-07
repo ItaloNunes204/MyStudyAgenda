@@ -226,15 +226,15 @@ def modifica_evento(evento):
 # modifica atividade
 def modifica_atividade(atividade):
     comando = (
-        " UPDATE mystudyagenda.evento SET nome = \'{}\', nota = \'{}\', notaAtividade = \'{}\', intervaliInteiro = {}, inicio = \'{}\', "
-        "fim = \'{}\', horario = \'{}\', estado = \'{}\', observacao = \'{}\', nomeMateria = \'{}\' WHERE email = \'{}\' and id_atividade = {}".format(
+        " UPDATE mystudyagenda.atividade SET nome = \'{}\', nota = \'{}\', notaAtividade = \'{}\', intervaliInteiro = {}, inicio = \'{}\', "
+        "fim = \'{}\', horario = \'{}\', estado = {}, observacao = \'{}\', nomeMateria = \'{}\' WHERE email = \'{}\' and id_atividade = {}".format(
         atividade.nome, atividade.nota, atividade.notaAtividade, atividade.intervalo, atividade.inicio, atividade.fim, atividade.horario, atividade.estado, atividade.observacao, atividade.nomeMateria, atividade.email, atividade.idAtividade))
     try:
         cursor.execute(comando)
         con.commit()
         saida = True
     except Error as e:
-        print("Erro ao modificar o evento: {}".format(e))
+        print("Erro ao modificar a atividade: {}".format(e))
         saida = False
     return saida
 
@@ -268,4 +268,79 @@ def modifica_tarefa(tarefa):
     except Error as e:
         print("Erro ao modificar o evento: {}".format(e))
         saida = False
+    return saida
+
+
+# coleta o evento com o id
+def get_eventoID(email, id):
+    comando = ("SELECT*FROM mystudyagenda.evento WHERE email = \'{}\' and idEvento = {}".format(email, id))
+    try:
+        cursor.execute(comando)
+        linhas = cursor.fetchall()
+        if len(linhas) == 0:
+            saida = "sem registros"
+        else:
+            saida = []
+            for linha in linhas:
+                saida.append(
+                    classes.Evento(linha[0], linha[1], linha[2], linha[3], linha[4], linha[5], linha[6], linha[7],
+                                   linha[8], linha[9]))
+    except Error as e:
+        print("Erro ao coletar as atividades: {}".format(e))
+        saida = "Erro"
+    return saida
+
+
+# coleta a atividade com o id
+def get_atividadeID(email, id):
+    comando = ("SELECT*FROM mystudyagenda.atividade WHERE email = \'{}\' and id_atividade = {}".format(email, id))
+    try:
+        cursor.execute(comando)
+        linhas = cursor.fetchall()
+        if len(linhas) == 0:
+            saida = "sem registros"
+        else:
+            saida = []
+            for linha in linhas:
+                saida.append(classes.Atividade(linha[0], linha[1], linha[2], linha[3], linha[4], linha[5], linha[6], linha[7], linha[8], linha[9], linha[10], linha[11], linha[12]))
+    except Error as e:
+        print("Erro ao coletar as atividades: {}".format(e))
+        saida = "Erro"
+    return saida
+
+
+# coleta a tarefa  com o id
+def get_tarefasID(email, id):
+    comando = ("SELECT*FROM mystudyagenda.tarefas WHERE email = \'{}\' and idTarefa = {}".format(email, id))
+    try:
+        cursor.execute(comando)
+        linhas = cursor.fetchall()
+        if len(linhas) == 0:
+            saida = "sem registros"
+        else:
+            saida = []
+            for linha in linhas:
+                saida.append(
+                    classes.Tarefa(linha[0], linha[1], linha[2], linha[3], linha[4], linha[5], linha[6], linha[7], linha[8], linha[9], linha[10]))
+    except Error as e:
+        print("Erro ao coletar as tarefas: {}".format(e))
+        saida = "Erro"
+    return saida
+
+
+# coleta a materia  com o id
+def get_materiaID(email, id):
+    comando = ("SELECT*FROM mystudyagenda.materia WHERE email = \'{}\' and idMateria = {}".format(email, id))
+    try:
+        cursor.execute(comando)
+        linhas = cursor.fetchall()
+        if len(linhas) == 0:
+            saida = "sem registros"
+        else:
+            saida = []
+            for linha in linhas:
+                saida.append(classes.Materia(linha[0], linha[1], linha[2], linha[3], linha[4], linha[5], linha[6], linha[7], linha[8], linha[9], linha[10]))
+    except Error as e:
+        print("Erro ao coletar as materias: {}".format(e))
+        saida = "Erro"
     return saida

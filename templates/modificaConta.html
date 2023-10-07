@@ -1,28 +1,5 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../static/favicon.png" >
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">  
-    <link rel="stylesheet" href="../static/style.css">
-    <title>MyStudyAgenda</title>
-</head>
-<body>
-    <header class="header">
-        <nav class="navbar">
-            <a class="logo" href="">MyStudyAgenda</a> 
-            <ul class="nav-menu">
-                <li class="nav-item"><a class="nav-link" href="">Cadastrar Conta</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Login</a></li>
-            </ul>
-            <div class="hamburguer">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </nav>
-    </header>
+{% extends 'base.html' %}
+{% block conteudo %}
     <main>
         <form action="" method="post" class="container-form">
             <div class="card-form">
@@ -38,10 +15,6 @@
                 <div class="label-float">
                     <input type="text" id="nome" name="nome" oninput="validaNome()" value="{{conta.nome}}" required>
                     <label for="nome" id="labelNome">Nome</label>
-                </div>
-                <div class="label-float">
-                    <input type="text" id="email" name="email" oninput="validaEmail()" value="{{conta.email}}"  required>
-                    <label for="email" id="labelEmail">Email</label>
                 </div>
                 <div class="label-float">
                     <input type="password" id="senha" name="senha" oninput="validaSenha()">
@@ -73,45 +46,4 @@
             </div>
         </form>
     </main>
-    <br>
-    <footer class="footer">
-        <div class="container-footer">
-            <div class="row">
-                <div class="footer-col">
-                    <h4>Projeto</h4>
-                    <ul class="lista_footer">
-                        <li><a href="#">Sobre</a></li>
-                        <li><a href="#">Seviços</a></li>
-                        <li><a href="#">privacidade</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Contato</h4>
-                    <ul>
-                        <li><a href="#">Contato</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Funcionalidades</h4>
-                    <ul>
-                        <li><a href="#">Cadastro Atividade </a></li>
-                        <li><a href="#">Cadastro Evento</a></li>
-                        <li><a href="#">Cadastro Materia</a></li>
-                        <li><a href="#">Consulta</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>follow us</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                        <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-   </footer>
-    <script src="../static/navbar.js"></script>
-    <script src="../static/mostraSenha.js"></script>
-</body>
-</html>
+{% endblock %}

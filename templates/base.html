@@ -11,14 +11,15 @@
 <body>
     <header class="header">
         <nav class="navbar">
-            <a class="logo" href="">MyStudyAgenda</a> 
+            <a class="logo" href="/cliente">MyStudyAgenda</a>
             <ul class="nav-menu">
-                <li class="nav-item"><a class="nav-link" href="">Cadastro Materia</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Cadastro Evento</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Cadastro Atividade</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Consulta</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Editar Conta</a></li>
-                <li class="nav-item"><a class="nav-link" href="">Sair</a></li>
+                <li class="nav-item"><a class="nav-link" href="/cadastro_materias">Cadastro Materia</a></li>
+                <li class="nav-item"><a class="nav-link" href="/cadastro_eventos">Cadastro Evento</a></li>
+                <li class="nav-item"><a class="nav-link" href="/cadastro_atividades">Cadastro Atividade</a></li>
+                <li class="nav-item"><a class="nav-link" href="/cadastro_tarefas">Cadastro Tarefa</a></li>
+                <li class="nav-item"><a class="nav-link" href="/consulta">Consulta</a></li>
+                <li class="nav-item"><a class="nav-link" href="/modifica_conta">Editar Conta</a></li>
+                <li class="nav-item"><a class="nav-link" href="/sair">Sair</a></li>
             </ul>
             <div class="hamburguer">
                 <span class="bar"></span>
@@ -27,9 +28,9 @@
             </div>
         </nav>
     </header>
-    <main>
-        
-    </main>
+    {% block conteudo %}
+    {% endblock %}
+    <br>
     <footer class="footer">
         <div class="container-footer">
             <div class="row">
@@ -67,6 +68,7 @@
             </div>
         </div>
    </footer>
+    <script src="../static/mostraSenha.js"></script>
     <script src="../static/navbar.js"></script>
 </body>
 </html>

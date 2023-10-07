@@ -1,3 +1,4 @@
+/*inicio estilo global*/
 *{
     margin: 0;
     padding: 0;
@@ -5,17 +6,24 @@
     font-family: sans-serif;
     list-style: none;
 }
+/*fim dos estilo global*/
+
+
+/* inicio navbar */
+/*inicio estilo da navbar*/
 header{
     background-color:#197BBD;
 }
+
 li{
     list-style: none;
 }
+
 a{
     color: #fff;
     text-decoration: none;
 }
- /* inicio navbar */
+
 .navbar{
     min-height: 70px;
     display: flex;
@@ -23,10 +31,12 @@ a{
     justify-content: space-between;
     padding: 0 34px;
 }
+
 .logo{
     font-size: 2rem;
     font-weight: bold;
 }
+
 .logo:hover{
     color: #9ED8DB;
 }
@@ -35,16 +45,20 @@ a{
     align-items: center;
     gap: 60px;
 }
+
 .nav-link{
     transition: 0.5s ease;
 }
+
 .nav-link:hover{
     color: #9ED8DB;
 }
+
 .hamburguer{
     display: none;
     cursor: pointer;
 }
+
 .bar{
     display: block;
     width: 28px;
@@ -88,18 +102,25 @@ a{
         left: 0;
     }
 }
- /* fim navbar */
+/*fim dos estilo da navbar*/
+/* fim navbar */
+
 
 /* inicio main */
+/* inicio dos estilo do corpo principal da main */
 main{
     margin-bottom: 50px;
 }
+
+/* conteiner de formulario*/
 .container-form{
     display: flex;
     justify-content: center;
     width: 100%;
     margin-top: 100px;
 }
+
+/* card dos formularios*/
 .card-form {
     background-color: #EDEDED;
     padding: 30px;
@@ -107,11 +128,15 @@ main{
     border-radius: 4%;
     width: 400px;
 }
+
+/* estilo do h1 dos formularios */
 .container-form .card-form h1{
     text-align: center;
     margin-bottom: 20px;
     color: #197BBD;
 }
+
+/* labels dos formulario*/
 .label-float input,.label-float-constante input{
     width: 100%;
     padding: 5px 5px;
@@ -126,16 +151,21 @@ main{
     border-radius: 0;
     
 }
+
+/* labels dos formulario constantes*/
 .label-float,.label-float-constante{
     position: relative;
     padding-top: 13px;
     margin-top: 5%;
     margin-bottom: 5%;
 }
+
+/* labels dos formulario*/
 .label-float input:focus{
     border-bottom: 2px solid blue;
 }
-  
+
+/* labels dos formulario*/
 .label-float label{
     color: blue;
     pointer-events: none;
@@ -145,6 +175,8 @@ main{
     margin-top: 13px;
     transition: all .3s ease-out;
 }
+
+/* inpusts "select" dos formulario*/
 select{
     width: 100%;
     padding:5px 5px;
@@ -157,6 +189,8 @@ select{
     font-size: 16px;
     color: blue;
 }
+
+/* labels dos formulario constantes*/
 .label-float-constante label{
     color: blue;
     pointer-events: none;
@@ -167,12 +201,15 @@ select{
     font-size: 13px;
 }
   
+/* labels dos formulario*/
 .label-float input:focus + label,
 .label-float input:valid + label{
     font-size: 13px;
     margin-top: 0;
     color:blue;
 }
+
+/* botoes dos formulario*/
 .container-form .card-form button{
     background-color: transparent;
     border-color: #197BBD;
@@ -186,14 +223,66 @@ select{
     outline: none;
     transition: all .4s ease-out;
 }  
-.container-form .card-form button:hover{
-    background-color: #197BBD;
-    color: #fff;
-}
+
+/* centraliza divs */
 .justify-center{
     display: flex;
     justify-content: center;
 }
+
+/* modifica o estilo da tag hr dentro de classe justify-center */
+.justify-center hr{
+    color: #197BBD;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    width: 60%;
+
+}
+
+
+.tipos-esquerda a{
+    color: #0d009c;
+}
+
+.tipos-esquerda a:hover{
+    color: #197BBD;
+}
+
+.tipos-direita a{
+    color: #0d009c;
+}
+
+.tipos-direita a:hover{
+    color: #197BBD;
+}
+
+/* modifica a tag p da classe linha-mensagem */
+.linha-mensagem p{
+    color: #000;
+    font-size: 14pt;
+    text-align: center;
+}
+
+/* modifica a tag a da classe linha-mensagem */
+.linha-mensagem a{
+    color: #0d009c;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all .3s ease-out;
+}
+
+/* estilo do evento da tag a da classe linha-mensagem*/
+.linha-mensagem a:hover{
+    color: #579ece;
+}
+
+/* botoes dos formulario*/
+.container-form .card-form button:hover{
+    background-color: #197BBD;
+    color: #fff;
+}
+
+/* estilos icons */
 .fa-eye,
 .fa-eye-slash{
     position: absolute;
@@ -202,16 +291,21 @@ select{
     cursor: pointer;
     color: #0d009c;
 }
+
+/* evento dos icons */
 .fa-eye:hover,
 .fa-eye-slash:hover{
     color: blue;
 }
-  
+
+/* estilos loading  */
 #loading {
     font-size: 12pt;
     color: #197BBD;
     animation: giraicon 2s linear infinite;
 }
+
+/* itens icons loop */
 @keyframes giraicon {
     from {
         transform: rotate(0deg);
@@ -220,31 +314,40 @@ select{
         transform: rotate(360deg);
     }
 }
+
+/* botoes de loading */
 .btn-loading{
     display: none;
 }
+
+/* lista de dias */
 .lista-dias{
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+/* divs de dias do cadastro */
 .dias-esquerda,.dias-direita{
     width: 100px;
     height: 100px;
 }
+
+/* divs de dias do cadastro */
 .dias-esquerda,.dias-direita label{
     color: blue;
 }
+
+/* divs de dias do cadastro */
 .texto-dia{
     color: blue;
 }
 
+/* tela index  section inicio */
 section#inicio {
-    position: relative;
     background-image: url(../static/fundo.jpg);
     background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
+    background-size: 100% 100%;
     background-position: center;
     width: 100%;
     height: 100vh;
@@ -253,12 +356,16 @@ section#inicio {
     justify-content: center;
     align-items: center;
 }
-s ection#inicio .conteudo {
+
+/* tela index section conteudo */
+section#inicio .conteudo {
     width: 100%;
     color: white;
     text-align: center;
     font-size: 40px;
 }
+
+/* tela index icone */
 section#inicio .icone {
     position: absolute;
     bottom: 15px;
@@ -266,6 +373,8 @@ section#inicio .icone {
     color: white;
     font-size: 40px;
 }
+
+/* tela index informações*/
 .card-info{
     margin-top: 40px;
     width: 100%;
@@ -274,6 +383,8 @@ section#inicio .icone {
     text-align: justify;
     background-color: #f0f0f0;
 }
+
+/* mensagem de erro no cadastro de conta de login */
 .erro{
     background-color: red;
     color: white;
@@ -283,34 +394,53 @@ section#inicio .icone {
     width: 100%;
 }
 
+/* configuração globais das tabelas */
 table{
     width: 100%;
     border-collapse: collapse;
 }
+
+/* configuração globais das captions das tabelas */
 caption{
     font-size: 1.2rem;
     font-weight: bolder;
     padding: 20px;
 }
+
+/* inicio dos estilos das tabelas */
 th,td{
     border: 1px solid black;
     padding: 10px;
+    position: relative;
 }
+
 tr{
     background-color: #fff;
 }
-tr:nth-child(even){
-    background-color: #85b3d2;
-}
+
 .container-tabela{
     display: flex;
     justify-content: column;
     align-items: center;
     overflow-x: auto;
 }
+
+.container-tabela tr:nth-child(even){
+    background-color: #85b3d2;
+}
+
+.agenda{
+    display: flex;
+    justify-content: column;
+    align-items: center;
+    overflow-x: auto;
+    cursor: pointer;
+}
+
 #cabecalho-tabela{
     background-color: #197BBD;
 }
+
 .btn-tabela{
     width: 60px;
     height: 20px;
@@ -318,9 +448,11 @@ tr:nth-child(even){
     background-color: #579ece;
     color: #fff;
 }
+
 .btn-tabela:hover{
     background-color: #197BBD;
 }
+
 .pesquisa-tabela{
     float: right;
     border-radius: 40px;
@@ -331,6 +463,7 @@ tr:nth-child(even){
     align-items: center;
 
 }
+
 .pesquisa-tabela button{
     background: #197BBD;
     border-radius: 50%;
@@ -341,6 +474,7 @@ tr:nth-child(even){
     align-items: center;
     transition: .5s;
 }
+
 .pesquisa-tabela input{
     border: none;
     background: none;
@@ -352,16 +486,20 @@ tr:nth-child(even){
     width: 0;
     transition: .5s;
 }
+
 .pesquisa-tabela input::placeholder{
     color: white;
 }
+
 .pesquisa-tabela:hover input {
     width: 240px;
     padding: 0 6px;
 }
+
 .pesquisa-tabela:hover button {
     background: #fff;
 }
+
 .btn-voltar{
     float: left;
     background: #197BBD;
@@ -370,14 +508,85 @@ tr:nth-child(even){
     width: 60px;
     margin-top: 20px;
 }
+
 .btn-voltar:hover{
     background: #579ece;
     color: #fff;
 }
+
 .editar_apagar{
-    color:#000;
+    color: #0d009c;
+}
+.editar_apagar:hover{
+    color: #000;
+}
+/* fim dos estilos das tabelas */
+
+/* inicio dos estilos das agendas */
+.agenda .description{
+    display: none;
+    position: absolute;
+    background-color: #579ece;
+    border: 1px solid  #579ece;
+    z-index: 1;
+    padding: 4px;
+    width: 150px;
+    top: -65px;
+    left: 0;
 }
 
+.agenda th:hover .description {
+    display: block;
+}
+
+.materia{
+    background-color: yellow;
+}
+
+.atividade{
+    background-color: red;
+}
+
+.evento{
+    background-color: green;
+}
+
+.tarefa{
+    background-color: blue;
+}
+
+.card-agenda {
+    background-color: #EDEDED;
+    padding: 30px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    width: 90%;
+}
+
+.proxima-pagina{
+    background-color: #197BBD;
+}
+
+.proxima-pagina h1{
+    margin: 0 10px;
+}
+
+.btn-proximo{
+    width: 27px;
+    height: 35px; 
+    margin-right: 10px;
+    margin-left: 10px;
+    background-color: #fff;
+}
+
+.btn-proximo:hover{
+    background-color: #EDEDED;
+}
+
+.assuntos ul li{
+    list-style-type: disc;
+}
+/* fim dos estilos das agendas */
 /* fim main */
 
 /* inicio footer */
@@ -385,18 +594,22 @@ tr:nth-child(even){
 	max-width: 1170px;
 	margin:auto;
 }
+
 .row{
 	display: flex;
 	flex-wrap: wrap;
 }
+
 .footer{
 	background-color: #197BBD;
     padding: 70px 0;
 }
+
 .footer-col{
    width: 25%;
    padding: 0 15px;
 }
+
 .footer-col h4{
 	font-size: 18px;
 	color: #fff;
@@ -405,6 +618,7 @@ tr:nth-child(even){
 	font-weight: 500;
 	position: relative;
 }
+
 .footer-col h4::before{
 	content: '';
 	position: absolute;
@@ -415,9 +629,11 @@ tr:nth-child(even){
 	box-sizing: border-box;
 	width: 50px;
 }
+
 .footer-col ul li:not(:last-child){
 	margin-bottom: 10px;
 }
+
 .footer-col ul li a{
 	font-size: 16px;
 	text-transform: capitalize;
@@ -427,10 +643,12 @@ tr:nth-child(even){
 	display: block;
 	transition: all 0.3s ease;
 }
+
 .footer-col ul li a:hover{
 	color: #9ED8DB;
 	padding-left: 8px;
 }
+
 .footer-col .social-links a{
 	display: inline-block;
 	height: 40px;
@@ -443,12 +661,12 @@ tr:nth-child(even){
 	color: #ffffff;
 	transition: all 0.5s ease;
 }
+
 .footer-col .social-links a:hover{
 	color: #24262b;
 	background-color: #ffffff;
 }
 
-/*responsive*/
 @media(max-width: 767px){
   .footer-col{
     width: 50%;

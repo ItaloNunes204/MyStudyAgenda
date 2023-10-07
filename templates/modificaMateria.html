@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+    <main>
+        <form action="" method="post" class="container-form">
+            <div class="card-form">
+                <h1>Modifica Materia</h1>
+                <div class="label-float">
+                    <input type="text" id="nome" name="nome" oninput="validaNome()" required value="{{materia.nome}}">
+                    <label for="nome" id="labelNome">Nome</label>
+                </div>
+                <div class="label-float-constante">
+                    <input type="date" id="inicio" name="inicio" oninput="validaInicio()" required value="{{materia.inicio}}">
+                    <label for="inicio" id="labelInicio">Data de Inicio</label>
+                </div>
+                <div class="label-float-constante">
+                    <input type="date" id="fim" name="fim" oninput="validaData()" required value="{{materia.fim}}">
+                    <label for="fim" id="labelFim">Data do Termino</label>
+                </div>
+                <div class="label-float-constante">
+                    <input type="time" id="horario" name="horario" oninput="validaHorario()" required value="{{materia.horario}}">
+                    <label for="horario" id="labelHorario">Horario</label>
+                </div>
+                <div class="label-float">
+                    <input type="number" id="creditos" name="creditos" oninput="validaCreditos()" required value="{{materia.creditos}}">
+                    <label for="creditos" id="labelCreditos">N° Creditos</label>
+                </div>
+                <div class="label-float">
+                    <input type="text" id="observacao" name="observacao" oninput="validaObservacao()" required value="{{materia.observacao}}">
+                    <label for="observacao" id="labelObservacao">Observação</label>
+                </div>
+                <br>
+                <div class="justify-center">
+                    <p class="texto-dia">Quais são os dias da aula?</p>
+                </div>
+                <br>
+                <div class="lista-dias">
+                    <div class="dias-esquerda">
+                        <ul>
+                            {% if dias[0] == 0 %}
+                                <li>
+                                    <input type="checkbox" name="segunda" id="segunda" class="dia">
+                                    <label for="segunda" class="nome-dia">Segunda</label>
+                                </li>
+                            {% else %}
+                                <li>
+                                    <input type="checkbox" name="segunda" id="segunda" class="dia" checked>
+                                    <label for="segunda" class="nome-dia">Segunda</label>
+                                </li>
+                            {% endif %}
+                            <br>
+                            {% if dias[1] == 0 %}
+                                <li>
+                                    <input type="checkbox" name="terca" id="terca" class="dia">
+                                    <label for="terca" class="nome-dia">Terça</label>
+                                </li>
+                            {% else %}
+                                <li>
+                                    <input type="checkbox" name="terca" id="terca" class="dia" checked>
+                                    <label for="terca" class="nome-dia">Terça</label>
+                                </li>
+                            {% endif %}
+                            <br>
+                            {% if dias[2] == 0 %}
+                                <li>
+                                    <input type="checkbox" name="quarta" id="quarta" class="dia">
+                                    <label for="quarta" class="nome-dia">Quarta</label>
+                                </li>
+                            {% else %}
+                                <li>
+                                    <input type="checkbox" name="quarta" id="quarta" class="dia" checked>
+                                    <label for="quarta" class="nome-dia">Quarta</label>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <div class="dias-direita">
+                        <ul>
+                            {% if dias[3] == 0 %}
+                                <li>
+                                    <input type="checkbox" name="quinta" id="quinta" class="dia">
+                                    <label for="quinta" class="nome-dia">Quinta</label>
+                                </li>
+                            {% else %}
+                                <li>
+                                    <input type="checkbox" name="quinta" id="quinta" class="dia" checked>
+                                    <label for="quinta" class="nome-dia">Quinta</label>
+                                </li>
+                            {% endif %}
+                            <br>
+                            {% if dias[4] == 0 %}
+                                <li>
+                                    <input type="checkbox" name="sexta" id="sexta" class="dia">
+                                    <label for="sexta" class="nome-dia">Sexta</label>
+                                </li>
+                            {% else %}
+                                <li>
+                                    <input type="checkbox" name="sexta" id="sexta" class="dia" checked>
+                                    <label for="sexta" class="nome-dia">Sexta</label>
+                                </li>
+                            {% endif %}
+                            <br>
+                            {% if dias[5] == 0 %}
+                                <li>
+                                    <input type="checkbox" name="sabado" id="sabado" class="dia">
+                                    <label for="sabado" class="nome-dia">Sabado</label>
+                                </li>
+                            {% else %}
+                                <li>
+                                    <input type="checkbox" name="sabado" id="sabado" class="dia" checked>
+                                    <label for="sabado" class="nome-dia">Sabado</label>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="justify-center">
+                    <button class="btn-cadastrar" id="btn-cadastrar" name="btn-cadastrar" type="submit" onclick="trocarBotao()">Modificar</button>
+                    <button class="btn-loading" id="btn-loading" name="btn-loading"><i class="fa fa-spinner" aria-hidden="true" id="loading"></i>Modificando</button>
+                </div>
+            </div>
+        </form>
+    </main>
+{% endblock %}

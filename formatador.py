@@ -41,3 +41,28 @@ def formata_estado_saida(estado):
     else:
         saida = "Finalizado"
     return saida
+
+
+def formata_dias_modifica_materia(dias_entrada):
+    dias = [0,0,0,0,0,0]
+    saidas = dias_entrada.replace('dias,', '')
+    saidas = saidas.split(',')
+    for saida in saidas:
+        if saida == "Segunda":
+            dias[0] = 1
+        else:
+            if saida == "Terça":
+                dias[1] = 1
+            else:
+                if saida == "Quarta":
+                    dias[2] = 1
+                else:
+                    if saida == "Quinta":
+                        dias[3] = 1
+                    else:
+                        if saida == "Sexta":
+                            dias[4] = 1
+                        else:
+                            if saida == "Sabado":
+                                dias[5] = 1
+    return dias

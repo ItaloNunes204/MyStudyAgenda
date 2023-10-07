@@ -10,6 +10,7 @@ function mostraSenha(){
         btn.classList.replace('fa-eye-slash','fa-eye')
     }
 }
+
 function mostraConfSenha(){
     var input = document.getElementById('confsenha')
     var btn = document.getElementById('btn-confsenha')
@@ -22,6 +23,7 @@ function mostraConfSenha(){
         btn.classList.replace('fa-eye-slash','fa-eye')
     }
 }
+
 function validaNome(){
     const input = document.getElementById('nome')
     const label = document.getElementById('labelNome')
@@ -39,6 +41,7 @@ function validaNome(){
         input.setAttribute('style','border-color: green')
     }
 }
+
 function validaEmail(){
     const input = document.getElementById('email')
     const label = document.getElementById('labelEmail')
@@ -56,6 +59,7 @@ function validaEmail(){
         input.setAttribute('style','border-color: green')
     }
 }
+
 function validaSenha(){
     const input = document.getElementById('senha')
     const label = document.getElementById('labelSenha')
@@ -73,6 +77,7 @@ function validaSenha(){
         input.setAttribute('style','border-color: green')
     }
 }
+
 function validaConfSenha(){
     const senha = document.getElementById('senha')
     const confsenha = document.getElementById('confsenha')
@@ -102,6 +107,7 @@ function validaConfSenha(){
         senha.setAttribute('style','border-color: green')
     }
 }
+
 function validaCurso(){
     const input = document.getElementById('curso')
     const label = document.getElementById('labelCurso')
@@ -119,6 +125,7 @@ function validaCurso(){
         input.setAttribute('style','border-color: green')
     }
 }
+
 function validaPeriodo(){
     const input = document.getElementById('periodo')
     const label = document.getElementById('labelPeriodo')
@@ -136,6 +143,7 @@ function validaPeriodo(){
         input.setAttribute('style','border-color: green')
     }
 }
+
 function validaUniversidade(){
     const input = document.getElementById('universidade')
     const label = document.getElementById('labelUniversidade')
@@ -153,6 +161,7 @@ function validaUniversidade(){
         input.setAttribute('style','border-color: green')
     }   
 }
+
 function validaInicio(){
     const input = document.getElementById('inicio')
     const label = document.getElementById('labelInicio')
@@ -164,6 +173,7 @@ function validaInicio(){
         input.setAttribute('style','border-color: blue')
     }
 }
+
 function validaHorario(){
     const input = document.getElementById('horario')
     const label = document.getElementById('labelHorario')
@@ -175,6 +185,7 @@ function validaHorario(){
         input.setAttribute('style','border-color: blue')
     }
 }
+
 function validaLugar(){
     const input = document.getElementById('lugar')
     const label = document.getElementById('labelLugar')
@@ -192,6 +203,7 @@ function validaLugar(){
         input.setAttribute('style','border-color: green')
     }
 }
+
 function validaObservacao(){
     const input = document.getElementById('observacao')
     const label = document.getElementById('labelObservacao')
@@ -209,6 +221,7 @@ function validaObservacao(){
         input.setAttribute('style','border-color: green')
     }
 }
+
 function validaTipo(){
     const input = document.getElementById('tipo')
     const label = document.getElementById('labelTipo')
@@ -226,6 +239,7 @@ function validaTipo(){
         input.setAttribute('style','border-color: green')
     }
 }
+
 function validaCreditos(){
     const input = document.getElementById('creditos')
     const label = document.getElementById('labelCreditos')
@@ -243,6 +257,7 @@ function validaCreditos(){
         input.setAttribute('style','border-color: green')
     }
 }
+
 function validaNota(){
     const input = document.getElementById('nota')
     const label = document.getElementById('labelNota')
@@ -260,6 +275,7 @@ function validaNota(){
         input.setAttribute('style','border-color: green')
     }
 }
+
 function trocarBotao(){
     const cadastrar = document.getElementById('btn-cadastrar');
     const carregando = document.getElementById('btn-loading');
@@ -267,6 +283,7 @@ function trocarBotao(){
     cadastrar.style.display = 'none';
     carregando.style.display = 'block';
 }
+
 function validaData() {
     const labelInicio = document.getElementById('labelInicio');
     const labelFim = document.getElementById('labelFim');

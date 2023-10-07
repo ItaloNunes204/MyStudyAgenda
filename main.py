@@ -38,6 +38,7 @@ def cadastro_conta():
                 return redirect('/cliente')
             else:
                 flash("Erro ao cadastrar a conta")
+                return redirect("/cadastro_conta")
     else:
         return render_template("cadastroConta.html")
 
@@ -58,7 +59,7 @@ def login():
         return render_template("login.html")
 
 
-@app.route('/cliente')
+@app.route("/cliente")
 def cliente():
     if not session.get("name"):
         return redirect("/login")
@@ -199,17 +200,16 @@ def cadastro_atividades():
                 return redirect("/cadastro_atividades")
         else:
             materias = bd.get_materia(email, True)
-            if materias == "sem registros":
-                flash("Para cadastrar atividades vc deve ter materias cadastradas")
-                return redirect("/cliente")
-            else:
+            if materias == "sem registros" or not materias:
                 if not materias:
                     flash("Erro na busca das materias")
-                    return redirect("/cliente")
                 else:
-                    for materia in materias:
-                        materia.nome = fr.formata_nome(materia.nome)
-                    return render_template("cadastroAtividade.html", materias=materias)
+                    flash("Para cadastrar atividades vc deve ter materias cadastradas")
+                return redirect("/cliente")
+            else:
+                for materia in materias:
+                    materia.nome = fr.formata_nome(materia.nome)
+                return render_template("cadastroAtividade.html", materias=materias)
 
 
 @app.route("/cadastro_tarefas", methods=["POST", "GET"])
@@ -244,6 +244,14 @@ def cadastro_tarefas():
                 return redirect("/cadastro_tarefas")
         else:
             return render_template("cadastroTarefas.html")
+
+
+@app.route("/consulta")
+def consulta():
+    if not session.get("name"):
+        return redirect("/login")
+    else:
+        return render_template("consulta.html")
 
 
 @app.route("/listagem_materia", methods=["POST", "GET"])
@@ -281,7 +289,7 @@ def listagem_materia():
                             dados_pesquisa.append(materia)
                     if len(dados_pesquisa) == 0:
                         flash("Pesquisa não encontrada")
-                        return redirect("/listagem_materia")
+                        return render_template("listagemMateria.html", materias=materias)
                     else:
                         return render_template("listagemMateria.html", materias=dados_pesquisa)
         else:
@@ -450,6 +458,224 @@ def listagem_tarefa():
                 for tarefa in tarefas:
                     tarefa.estado = fr.formata_estado_saida(tarefa.estado)
                 return render_template("listagemTarefa.html", tarefas=tarefas)
+
+
+@app.route("/modifica_conta", methods=["POST", "GET"])
+def modifica_conta():
+    if not session.get("name"):
+        return redirect("/login")
+    else:
+        email = session.get("name")
+        if request.method == "POST":
+            nome = request.form.get("nome")
+            senha = request.form.get("senha")
+            conf_senha = request.form.get("confsenha")
+            curso = request.form.get("curso")
+            periodo = request.form.get("periodo")
+            universidade = request.form.get("universidade")
+            conta = bd.get_conta(email)
+            if senha != "":
+                if senha != conf_senha:
+                    flash("senhas incompativeis")
+                    return redirect("/modifica_conta")
+                else:
+                    conta.senha = senha
+            conta.nome = nome
+            conta.curso = curso
+            conta.periodo = periodo
+            conta.universidade = universidade
+            if bd.modifica_conta(conta):
+                flash("Conta modificada")
+                return redirect("/cliente")
+            else:
+                flash("Erro ao modificar a conta")
+                return redirect("/modifica_conta")
+        else:
+            conta = bd.get_conta(email)
+            return render_template("modificaConta.html", conta=conta)
+
+
+@app.route("/modifica_materia/<id>", methods=["POST", "GET"])
+def modifica_materia(id):
+    if not session.get("name"):
+        return redirect("/login")
+    else:
+        email = session.get("name")
+        if request.method == "POST":
+            nome = request.form.get("nome")
+            inicio = request.form.get("inicio")
+            fim = request.form.get("fim")
+            horario = request.form.get("horario")
+            creditos = request.form.get("creditos")
+            observacao = request.form.get("observacao")
+
+            segunda = request.form.get("segunda")
+            terca = request.form.get("terca")
+            quarta = request.form.get("quarta")
+            quinta = request.form.get("quinta")
+            sexta = request.form.get("sexta")
+            sabado = request.form.get("sabado")
+            dias = []
+            if segunda == 'on':
+                dias.append("Segunda")
+            if terca == 'on':
+                dias.append("Terça")
+            if quarta == 'on':
+                dias.append("Quarta")
+            if quinta == 'on':
+                dias.append("Quinta")
+            if sexta == 'on':
+                dias.append("Sexta")
+            if sabado == 'on':
+                dias.append("Sabado")
+
+            if len(dias) == 0:
+                flash("Informe os dias")
+                return redirect("/modifica_materia/{}".format(id))
+            else:
+                dia = fr.formata_dias(dias)
+                materia = bd.get_materiaID(email, id)
+                materia.nome = nome
+                materia.inicio = inicio
+                materia.fim = fim
+                materia.horario = horario
+                materia.creditos = creditos
+                materia.observacao = observacao
+                materia.dias = dia
+                if not bd.modifica_materia(materia):
+                    flash("Erro ao modificar a materia")
+                    return redirect("/modifica_materia/{}".format(id))
+        else:
+            materia = bd.get_materiaID(email, id)
+            hora = materia[0].horario
+            hora = hora.datetime.time.strftime("%H:%M")
+            dias = fr.formata_dias_modifica_materia(materia[0].dias)
+            return render_template("modificaMateria.html", materia=materia[0], dias=dias)
+
+
+@app.route("/modifica_tarefa/<id>", methods=["POST", "GET"])
+def modifica_tarefa(id):
+    if not session.get("name"):
+        return redirect("/login")
+    else:
+        email = session.get("name")
+        if request.method == "POST":
+            nome = request.form.get("nome")
+            inicio = request.form.get("inicio")
+            fim = request.form.get("fim")
+            intervalo = request.form.get("intervalo")
+            if intervalo == "on":
+                intervalo  = True
+            else:
+                intervalo = False
+            horario = request.form.get("horario")
+            lugar = request.form.get("lugar")
+            observacao = request.form.get("observacao")
+            tipo = request.form.get("tipo")
+
+            tarefa = bd.get_tarefasID(email, id)
+            tarefa.nome = nome
+            tarefa.inicio = inicio
+            tarefa.fim = fim
+            tarefa.intervalo = intervalo
+            tarefa.horario = horario
+            tarefa.lugar = lugar
+            tarefa.observacao = observacao
+            tarefa.tipo = tipo
+            if not bd.modifica_tarefa(tarefa):
+                flash("erro ao modificar a tarefa")
+                return redirect("/modifica_tarefa/{}".format(id))
+
+        else:
+            tarefa = bd.get_tarefasID(email, id)
+            return render_template("modificaTarefas.html", tarefa = tarefa)
+
+
+@app.route("/modifica_atividade/<id>", methods=["POST", "GET"])
+def modifica_atividade(id):
+    if not session.get("name"):
+        return redirect("/login")
+    else:
+        email = session.get("name")
+        if request.method == "POST":
+            nome = request.form.get("nome")
+            inicio = request.form.get("inicio")
+            fim = request.form.get("fim")
+            intervalo = request.form.get("intervalo")
+            if intervalo == "on":
+                intervalo = True
+            else:
+                intervalo = False
+            horario = request.form.get("horario")
+            nota_atividade = request.form.get("nota_atividade")
+            nota = request.form.get("nota")
+            nome_atividade = request.form.get("materia")
+            observacao = request.form.get("observacao")
+            idMateria = None
+            materias = bd.get_materia(email, True)
+            for materia in materias:
+                if materia.nome == nome_atividade:
+                    idMateria = materia.idMateria
+                    break
+            if idMateria == None:
+                materias = bd.get_materia(email, False)
+                for materia in materias:
+                    if materia.nome == nome_atividade:
+                        idMateria = materia.idMateria
+                        break
+
+
+            atividade = bd.get_atividadeID(email,id)
+            atividade.nome = nome
+            atividade.inicio = inicio
+            atividade.fim = fim
+            atividade.intervalo = intervalo
+            atividade.horario = horario
+            atividade.notaAtividade = nota_atividade
+            atividade.nota = nota
+            atividade.nomeMateria = nome_atividade
+            atividade.idMateria = idMateria
+            if not bd.modifica_atividade(atividade):
+                flash("erro ao modificar a atividade")
+                return redirect("/modifica_atividade/{}".format(id))
+        else:
+            atividade = bd.get_atividadeID(email, id)
+            return render_template("modificaAtividade.html", atividade = atividade)
+
+
+@app.route("/modifica_evento/<id>", methods=["POST", "GET"])
+def modifica_evento(id):
+    if not session.get("name"):
+        return redirect("/login")
+    else:
+        email = session.get("name")
+        if request.method == "POST":
+            nome = request.form.get("nome")
+            inicio = request.form.get("inicio")
+            fim = request.form.get("fim")
+            intervalo = request.form.get("intervalo")
+            if intervalo == "on":
+                intervalo = True
+            else:
+                intervalo = False
+            horario = request.form.get("horario")
+            lugar = request.form.get("lugar")
+            observacao = request.form.get("observacao")
+
+            evento = bd.get_eventoID(email,id)
+            evento.nome = nome
+            evento.inicio = inicio
+            evento.fim = fim
+            evento.intervalo = intervalo
+            evento.horario = horario
+            evento.lugar = lugar
+            evento.observacao = observacao
+            if not bd.modifica_evento(evento):
+                flash("erro ao modificar evento")
+                return redirect("/modifica_evento/{}".format(id))
+        else:
+            evento = bd.get_eventoID(email,id)
+            return render_template("modificaEvento.html",evento = evento)
 
 
 if __name__ == "__main__":
