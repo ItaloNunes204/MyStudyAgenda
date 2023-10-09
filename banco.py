@@ -344,3 +344,51 @@ def get_materiaID(email, id):
         print("Erro ao coletar as materias: {}".format(e))
         saida = "Erro"
     return saida
+
+
+def apagar_materia(materia):
+    comando = ("DELETE FROM mystudyagenda.materia WHERE idMateria = {}".format(materia.idMateria))
+    try:
+        cursor.execute(comando)
+        con.commit()
+        saida = True
+    except Error as e:
+        print("Erro ao apagar a materia: {}".format(e))
+        saida = False
+    return saida
+
+
+def apagar_atividade(atividade):
+    comando = ("DELETE FROM mystudyagenda.atividade WHERE idAtividade = {}".format(atividade.idAtividade))
+    try:
+        cursor.execute(comando)
+        con.commit()
+        saida = True
+    except Error as e:
+        print("Erro ao apagar a atividade: {}".format(e))
+        saida = False
+    return saida
+
+
+def apagar_evento(evento):
+    comando = ("DELETE FROM mystudyagenda.evento WHERE idEvento = {}".format(evento.idEvento))
+    try:
+        cursor.execute(comando)
+        con.commit()
+        saida = True
+    except Error as e:
+        print("Erro ao apagar a evento: {}".format(e))
+        saida = False
+    return saida
+
+
+def apagar_tarefa(tarefa):
+    comando = ("DELETE FROM mystudyagenda.tarefa WHERE idTarefa = {}".format(tarefa.idTarefa))
+    try:
+        cursor.execute(comando)
+        con.commit()
+        saida = True
+    except Error as e:
+        print("Erro ao apagar a tarefa: {}".format(e))
+        saida = False
+    return saida

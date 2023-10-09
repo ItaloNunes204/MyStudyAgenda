@@ -307,6 +307,40 @@ def listagem_materia():
                 return render_template("listagemMateria.html", materias=materias)
 
 
+@app.route("/listagem_materia/<id>", methods=["POST", "GET"])
+def listagem_materia_apagar(id):
+    if not session.get("name"):
+        return redirect("/login")
+    else:
+        email = session.get("name")
+        materias = bd.get_materia(email, True)
+        if not materias or materias == "sem registros":
+            if not materias:
+                flash("Erro ao coletar as informações")
+            else:
+                flash("Sem registros")
+            return redirect("/cliente")
+        else:
+            for materia in materias:
+                materia.dias = fr.formata_dias_saida(materia.dias)
+                materia.estado = fr.formata_estado_saida(materia.estado)
+
+        materia = bd.get_materiaID(email, id)
+
+        if not materia:
+            if not materias:
+                flash("Erro ao coletar as informações")
+                return redirect("/cliente")
+        else:
+            return render_template("listagemMateria.html", materias = materias, materia = materia)
+
+
+@app.route("/apagar_materia/<id>", methods=["POST", "GET"])
+def apagar_materia(id):
+    print("apagando materia com id:{}".format(id))
+    return redirect("/cliente")
+
+
 @app.route("/listagem_evento", methods=["POST", "GET"])
 def listagem_evento():
     if not session.get("name"):
@@ -535,6 +569,7 @@ def modifica_materia(id):
             else:
                 dia = fr.formata_dias(dias)
                 materia = bd.get_materiaID(email, id)
+                materia = materia[0]
                 materia.nome = nome
                 materia.inicio = inicio
                 materia.fim = fim
@@ -542,13 +577,15 @@ def modifica_materia(id):
                 materia.creditos = creditos
                 materia.observacao = observacao
                 materia.dias = dia
-                if not bd.modifica_materia(materia):
+                if bd.modifica_materia(materia):
+                    flash("materia modificada")
+                    return redirect("/cliente")
+                else:
                     flash("Erro ao modificar a materia")
                     return redirect("/modifica_materia/{}".format(id))
         else:
             materia = bd.get_materiaID(email, id)
-            hora = materia[0].horario
-            hora = hora.datetime.time.strftime("%H:%M")
+            materia[0].horario = fr.formata_hora_modifica(materia[0].horario)
             dias = fr.formata_dias_modifica_materia(materia[0].dias)
             return render_template("modificaMateria.html", materia=materia[0], dias=dias)
 

@@ -66,3 +66,12 @@ def formata_dias_modifica_materia(dias_entrada):
                             if saida == "Sabado":
                                 dias[5] = 1
     return dias
+
+
+def formata_hora_modifica(hora):
+    hora = str(hora)
+    dados = hora.split(":")
+    if int(dados[0]) < 10:
+        dados[0] = "0" + dados[0]
+    saida = dados[0] + ":" + dados[1]
+    return saida

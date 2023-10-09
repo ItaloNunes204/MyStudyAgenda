@@ -587,6 +587,92 @@ tr{
     list-style-type: disc;
 }
 /* fim dos estilos das agendas */
+
+/* inicio dos estilos da confirmação */
+.apagar_registros{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #00000080;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: auto;
+}
+.card_confirmação{
+    width: 30rem;
+    position: relative;
+    background-color:#fff;
+    border-radius: .5rem;
+}
+.card_confirmação h2{
+    padding: 2rem;
+    margin: 0;
+    color: #197BBD;
+}
+.card_confirmação a#fechar{
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 2rem;
+    color: #000;
+    padding: 1.5rem;
+}
+.card_confirmação a#fechar:hover{
+    color: #197BBD;
+}
+.card_confirmação hr{
+    width: 90%;
+    margin: 0 auto;
+}
+.card_confirmação p{
+    padding: 2rem;
+    text-align: center;
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+.btns_apagar_registros{
+    display: flex;
+    justify-content: center;
+    padding: 0 2rem 2rem 2rem;
+}
+.btn_cancelar_registros{
+    background-color: #fff;
+    color: #197BBD;
+    border: solid 1px #197BBD;
+    text-decoration: none;
+    padding:.9rem;
+    border-radius: .5rem;
+    width: 7rem;
+    text-align: center;
+    margin-right: 1rem;
+    transition: all .5s ease-out;
+}
+
+.btn_cancelar_registros:hover{
+    background-color: #197BBD;
+    color: #fff;
+}
+
+.btn_apagar_registros{
+    background-color:#fff;
+    color:#197BBD;
+    border: solid 1px #197BBD;
+    text-decoration: none;
+    padding:.9rem;
+    border-radius: .5rem;
+    width: 7rem;
+    text-align: center;
+    transition: all .5s ease-out;
+}
+.btn_apagar_registros:hover{
+    background-color: #197BBD;
+    color: #fff;
+}
+/* fim dos estilos da confirmação */
 /* fim main */
 
 /* inicio footer */
