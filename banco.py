@@ -47,8 +47,7 @@ def login(email, senha):
 # função de criação de materia
 def cria_materia(materia):
     comando = ("INSERT INTO mystudyagenda.materia(nome, inicio, fim, nCreditos, nota, observacao, dias, horario, email, estado)"
-               "VALUE(\'{}\',\'{}\',\'{}\',\'{}\',\'{}\',\'{}\',\'{}\',\'{}\',\'{}\',{})".format(
-               materia.nome, materia.inicio, materia.fim, materia.creditos, materia.nota, materia.observacao, materia.dias, materia.horario, materia.email, materia.estado))
+               "VALUE(\'{}\',\'{}\',\'{}\',\'{}\',\'{}\',\'{}\',\'{}\',\'{}\',\'{}\',{})".format(materia.nome, materia.inicio, materia.fim, materia.creditos, materia.nota, materia.observacao, materia.dias, materia.horario, materia.email, materia.estado))
     try:
         cursor.execute(comando)
         con.commit()
@@ -61,9 +60,7 @@ def cria_materia(materia):
 
 # função de criação de evento
 def cria_evento(evento):
-    comando = ("INSERT INTO mystudyagenda.evento(nome, inicio, fim, intervaliInteiro, observacao, estado, horario, lugar, email)"
-                "VALUE(\'{}\',\'{}\',\'{}\',{},\'{}\',{},\'{}\',\'{}\',\'{}\')".format(
-                evento.nome, evento.inicio, evento.fim, evento.intervalo, evento.observacao, evento.estado, evento.horario, evento.lugar, evento.email))
+    comando = ("INSERT INTO mystudyagenda.evento(nome, inicio, fim, intervaliInteiro, observacao, estado, horario, lugar, email)VALUE(\'{}\',\'{}\',\'{}\',{},\'{}\',{},\'{}\',\'{}\',\'{}\')".format(evento.nome, evento.inicio, evento.fim, evento.intervalo, evento.observacao, evento.estado, evento.horario, evento.lugar, evento.email))
 
     try:
         cursor.execute(comando)
@@ -92,8 +89,7 @@ def cria_atividade(atividade):
 
 # função de criação de tarefa
 def cria_tarefa(tarefa):
-    comando = ("INSERT INTO mystudyagenda.tarefas(nome, inicio, fim, intervaliInteiro, horario, lugar, estado, observacao, tipo, email)"
-              "VALUE(\'{}\',\'{}\',\'{}\',{},\'{}\',\'{}\',{},\'{}\',\'{}\',\'{}\')".format(
+    comando = ("INSERT INTO mystudyagenda.tarefas(nome, inicio, fim, intervaliInteiro, horario, lugar, estado, observacao, tipo, email)VALUE(\'{}\',\'{}\',\'{}\',{},\'{}\',\'{}\',{},\'{}\',\'{}\',\'{}\')".format(
                tarefa.nome, tarefa.inicio, tarefa.fim, tarefa.intervalo, tarefa.horario, tarefa.lugar, tarefa.estado, tarefa.observacao, tarefa.tipo, tarefa.email))
     try:
         cursor.execute(comando)
@@ -227,8 +223,7 @@ def modifica_evento(evento):
 def modifica_atividade(atividade):
     comando = (
         " UPDATE mystudyagenda.atividade SET nome = \'{}\', nota = \'{}\', notaAtividade = \'{}\', intervaliInteiro = {}, inicio = \'{}\', "
-        "fim = \'{}\', horario = \'{}\', estado = {}, observacao = \'{}\', nomeMateria = \'{}\' WHERE email = \'{}\' and id_atividade = {}".format(
-        atividade.nome, atividade.nota, atividade.notaAtividade, atividade.intervalo, atividade.inicio, atividade.fim, atividade.horario, atividade.estado, atividade.observacao, atividade.nomeMateria, atividade.email, atividade.idAtividade))
+        "fim = \'{}\', horario = \'{}\', estado = {}, observacao = \'{}\', nomeMateria = \'{}\' WHERE email = \'{}\' and id_atividade = {}".format(atividade.nome, atividade.nota, atividade.notaAtividade, atividade.intervalo, atividade.inicio, atividade.fim, atividade.horario, atividade.estado, atividade.observacao, atividade.nomeMateria, atividade.email, atividade.idAtividade))
     try:
         cursor.execute(comando)
         con.commit()
@@ -243,8 +238,7 @@ def modifica_atividade(atividade):
 def modifica_materia(materia):
     comando = (
         " UPDATE mystudyagenda.materia SET nome = \'{}\' , inicio = \'{}\', fim = \'{}\', nCreditos = \'{}\', nota = \'{}\', observacao = \'{}\', "
-        "dias = \'{}\', horario = \'{}\', estado = {} WHERE email = \'{}\' and idMateria = \'{}\'".format(materia.nome, materia.inicio, materia.fim,
-        materia.creditos, materia.nota, materia.observacao, materia.dias, materia.horario, materia.estado, materia.email, materia.idMateria))
+        "dias = \'{}\', horario = \'{}\', estado = {} WHERE email = \'{}\' and idMateria = \'{}\'".format(materia.nome, materia.inicio, materia.fim, materia.creditos, materia.nota, materia.observacao, materia.dias, materia.horario, materia.estado, materia.email, materia.idMateria))
     try:
         cursor.execute(comando)
         con.commit()
@@ -259,8 +253,7 @@ def modifica_materia(materia):
 def modifica_tarefa(tarefa):
     comando = (
         " UPDATE mystudyagenda.tarefas SET nome = \'{}\', inicio = \'{}\', fim = \'{}\', intervaliInteiro = {}, horario = \'{}\', lugar = \'{}\', estado = {}, observacao = \'{}\',"
-        "tipo = \'{}\' WHERE email = \'{}\' and idTarefa = \'{}\'".format(tarefa.nome, tarefa.inicio, tarefa.fim, tarefa.intervalo, tarefa.horario, tarefa.lugar, tarefa.estado,
-        tarefa.observacao, tarefa.tipo, tarefa.email, tarefa.idTarefa))
+        "tipo = \'{}\' WHERE email = \'{}\' and idTarefa = \'{}\'".format(tarefa.nome, tarefa.inicio, tarefa.fim, tarefa.intervalo, tarefa.horario, tarefa.lugar, tarefa.estado, tarefa.observacao, tarefa.tipo, tarefa.email, tarefa.idTarefa))
     try:
         cursor.execute(comando)
         con.commit()
@@ -272,8 +265,8 @@ def modifica_tarefa(tarefa):
 
 
 # coleta o evento com o id
-def get_eventoID(email, id):
-    comando = ("SELECT*FROM mystudyagenda.evento WHERE email = \'{}\' and idEvento = {}".format(email, id))
+def get_evento_id(email, id_evento):
+    comando = ("SELECT*FROM mystudyagenda.evento WHERE email = \'{}\' and idEvento = {}".format(email, id_evento))
     try:
         cursor.execute(comando)
         linhas = cursor.fetchall()
@@ -292,8 +285,8 @@ def get_eventoID(email, id):
 
 
 # coleta a atividade com o id
-def get_atividadeID(email, id):
-    comando = ("SELECT*FROM mystudyagenda.atividade WHERE email = \'{}\' and id_atividade = {}".format(email, id))
+def get_atividade_id(email, id_atividade):
+    comando = ("SELECT*FROM mystudyagenda.atividade WHERE email = \'{}\' and id_atividade = {}".format(email, id_atividade))
     try:
         cursor.execute(comando)
         linhas = cursor.fetchall()
@@ -310,8 +303,8 @@ def get_atividadeID(email, id):
 
 
 # coleta a tarefa  com o id
-def get_tarefasID(email, id):
-    comando = ("SELECT*FROM mystudyagenda.tarefas WHERE email = \'{}\' and idTarefa = {}".format(email, id))
+def get_tarefas_id(email, id_tarefa):
+    comando = ("SELECT*FROM mystudyagenda.tarefas WHERE email = \'{}\' and idTarefa = {}".format(email, id_tarefa))
     try:
         cursor.execute(comando)
         linhas = cursor.fetchall()
@@ -329,8 +322,8 @@ def get_tarefasID(email, id):
 
 
 # coleta a materia  com o id
-def get_materiaID(email, id):
-    comando = ("SELECT*FROM mystudyagenda.materia WHERE email = \'{}\' and idMateria = {}".format(email, id))
+def get_materia_id(email, id_materia):
+    comando = ("SELECT*FROM mystudyagenda.materia WHERE email = \'{}\' and idMateria = {}".format(email, id_materia))
     try:
         cursor.execute(comando)
         linhas = cursor.fetchall()
@@ -346,6 +339,7 @@ def get_materiaID(email, id):
     return saida
 
 
+# apaga a materia do banco
 def apagar_materia(materia):
     comando = ("DELETE FROM mystudyagenda.materia WHERE idMateria = {}".format(materia.idMateria))
     try:
@@ -358,8 +352,9 @@ def apagar_materia(materia):
     return saida
 
 
+# apaga a atividade do banco
 def apagar_atividade(atividade):
-    comando = ("DELETE FROM mystudyagenda.atividade WHERE idAtividade = {}".format(atividade.idAtividade))
+    comando = ("DELETE FROM mystudyagenda.atividade WHERE id_atividade = {}".format(atividade.idAtividade))
     try:
         cursor.execute(comando)
         con.commit()
@@ -370,6 +365,7 @@ def apagar_atividade(atividade):
     return saida
 
 
+# apaga o evento do banco
 def apagar_evento(evento):
     comando = ("DELETE FROM mystudyagenda.evento WHERE idEvento = {}".format(evento.idEvento))
     try:
@@ -382,8 +378,9 @@ def apagar_evento(evento):
     return saida
 
 
+# apaga a tarefa do banco
 def apagar_tarefa(tarefa):
-    comando = ("DELETE FROM mystudyagenda.tarefa WHERE idTarefa = {}".format(tarefa.idTarefa))
+    comando = ("DELETE FROM mystudyagenda.tarefas WHERE idTarefa = {}".format(tarefa.idTarefa))
     try:
         cursor.execute(comando)
         con.commit()

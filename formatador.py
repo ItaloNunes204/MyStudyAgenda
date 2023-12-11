@@ -8,6 +8,7 @@ def codificando(senha):
     return str(result.hexdigest())
 
 
+# transforma uma lista de dias em uma unica string
 def formata_dias(dias):
     saida = "dias"
     for dia in dias:
@@ -15,26 +16,31 @@ def formata_dias(dias):
     return saida
 
 
+# transforma uma string em uma variavel do tipo datetime,"date"
 def troca_tipo_data(data):
     saida = datetime.datetime.strptime(data, '%Y-%m-%d')
     return saida
 
 
+# transforma uma string em uma variavel do tipo datetime,"time"
 def troca_tipo_hora(hora):
     saida = datetime.datetime.strptime(hora, '%H:%M')
     return saida
 
 
+# troca os espaços por um _
 def formata_nome(nome):
     saida = nome.replace(' ', '_')
     return saida
 
 
+# tira uma parte da string "dias,"
 def formata_dias_saida(dias):
     saida = dias.replace('dias,', '')
     return saida
 
 
+# troca variaveis booleanas por strings para serem exibidas
 def formata_estado_saida(estado):
     if estado == 1:
         saida = "cursando"
@@ -43,8 +49,9 @@ def formata_estado_saida(estado):
     return saida
 
 
+# cria um vetor que armazena 1 ou 0 para cada dia da semana
 def formata_dias_modifica_materia(dias_entrada):
-    dias = [0,0,0,0,0,0]
+    dias = [0, 0, 0, 0, 0, 0]
     saidas = dias_entrada.replace('dias,', '')
     saidas = saidas.split(',')
     for saida in saidas:
@@ -68,6 +75,7 @@ def formata_dias_modifica_materia(dias_entrada):
     return dias
 
 
+# transforma uma variavel datetime em uma string
 def formata_hora_modifica(hora):
     hora = str(hora)
     dados = hora.split(":")

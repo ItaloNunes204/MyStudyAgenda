@@ -30,6 +30,18 @@
     </header>
     {% block conteudo %}
     {% endblock %}
+
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+            <div class="mensagem_rapida" id="mensagemR">
+                <p>{{ message }}  <button class="btn-x" onclick="tira_mensagem()"><i class="fa fa-times" aria-hidden="true"></i></button></p>
+            </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
     <br>
     <footer class="footer">
         <div class="container-footer">

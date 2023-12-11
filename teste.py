@@ -6,10 +6,10 @@ id = 0
 
 
 conta = cl.Conta('italo','senddasha','esafasca','1','ufmg',True,True,0,email)
-materia = cl.Materia("tefsdfsdste","2023/05/22","2023/05/22",35,0,"ssadsadv",'dddsrrd',"14.55",email,True,17)
-trefa = cl.Tarefa("ffsssf","2023/05/22","2023/05/22",True,'15:55',"casa",True,'rrr','rrrr',email,14)
-evento = cl.Evento('saaaafas',"2023/05/22","2023/05/22",True,'kcada',True,'14:55','rrr',email,15)
-atividade = cl.Atividade('AafasfFA',0,0,True,"2023/05/22","2023/05/22",'14:55',True,'rrrrr',email,'TESTE',17,13)
+materia = cl.Materia("tefsdfsdste","2023/05/22","2023/05/22",35,0,"ssadsadv",'dddsrrd',"14.55",email,True,1)
+trefa = cl.Tarefa("ffsssf","2023/05/22","2023/05/22",True,'15:55',"casa",True,'rrr','rrrr',email,1)
+evento = cl.Evento('saaaafas',"2023/05/22","2023/05/22",True,'kcada',True,'14:55','rrr',email,1)
+atividade = cl.Atividade('AafasfFA',0,0,True,"2023/05/22","2023/05/22",'14:55',True,'rrrrr',email,'TESTE',17,1)
 atividade1 = cl.Atividade('000',0,0,False,"2023/05/22","2023/05/22",'14:55',True,'ddd',email,'da',17,13)
 
 
@@ -37,3 +37,7 @@ atividade1 = cl.Atividade('000',0,0,False,"2023/05/22","2023/05/22",'14:55',True
 #print(bd.get_atividade(email,True))
 #print(bd.get_atividadeID(email,13))
 
+#print(bd.apagar_materia(materia))
+#print(bd.apagar_atividade(atividade))
+#print(bd.apagar_evento(evento))
+#print(bd.apagar_tarefa(trefa))

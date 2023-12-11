@@ -11,12 +11,12 @@
                 </div>
                 
                 <div class="label-float-constante">
-                    <input type="date" id="inicio" name="inicio" oninput="validaInicio()" required value="2023-02-01">
+                    <input type="date" id="inicio" name="inicio" oninput="validaInicio()" required value="{{evento.inicio}}">
                     <label for="inicio" id="labelInicio">Data de Inicio</label>
                 </div>
 
                 <div class="label-float-constante">
-                    <input type="date" id="fim" name="fim" oninput="validaData()" required value="2023-02-01">
+                    <input type="date" id="fim" name="fim" oninput="validaData()" required value="{{evento.fim}}">
                     <label for="fim" id="labelFim">Data do Termino</label>
                 </div>
 
@@ -35,7 +35,7 @@
                 </div>
                 
                 <div class="label-float-constante">
-                    <input type="time" id="horario" name="horario" oninput="validaHorario()" value="22:30" required>
+                    <input type="time" id="horario" name="horario" oninput="validaHorario()" value="{{evento.horario}}" required>
                     <label for="horario" id="labelHorario">Horario</label>
                 </div>
                 

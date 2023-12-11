@@ -92,7 +92,7 @@ a{
         text-align: center;
         flex-direction: column;
         width: 100%;
-        z-index: 1;
+        z-index: 10;
         transition: 0.3s;
     }
     .nav-item{
@@ -609,6 +609,7 @@ tr{
     border-radius: .5rem;
 }
 .card_confirmação h2{
+    text-align: center;
     padding: 2rem;
     margin: 0;
     color: #197BBD;
@@ -641,8 +642,8 @@ tr{
 }
 .btn_cancelar_registros{
     background-color: #fff;
-    color: #197BBD;
-    border: solid 1px #197BBD;
+    color: red;
+    border: solid 1px red;
     text-decoration: none;
     padding:.9rem;
     border-radius: .5rem;
@@ -653,7 +654,7 @@ tr{
 }
 
 .btn_cancelar_registros:hover{
-    background-color: #197BBD;
+    background-color: red;
     color: #fff;
 }
 
@@ -674,6 +675,28 @@ tr{
 }
 /* fim dos estilos da confirmação */
 /* fim main */
+
+.mensagem_rapida{
+      position: fixed;
+      z-index: 5;
+      top: 75px;
+      right: 30px;
+      background-color: red;
+      color: white;
+      padding: 10px;
+      box-sizing: border-box;
+}
+@media (max-width: 600px) {
+      .mensagem_rapida {
+        text-align: center;
+      }
+}
+
+.btn-x{
+    background:none;
+    color: white;
+    border: none;
+}
 
 /* inicio footer */
 .container-footer{
@@ -762,6 +785,6 @@ tr{
 @media(max-width: 574px){
   .footer-col{
     width: 100%;
-    }
+   }
 }
 /* fim footer */

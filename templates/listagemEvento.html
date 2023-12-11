@@ -18,8 +18,9 @@
                 <caption>
                     <h2>listagem de Evento</h2>
                     <div class="pesquisa-tabela">
-                        <form action="">
-                            <input type="text" class="pesquisa-txt" placeholder="pesquisar">
+                        <form action="" method="post">
+                            <input type="text" class="pesquisa-txt" placeholder="pesquisar" name="pesquisa" id="pesquisa">
+                            <input type="checkbox" id="antigos" name="antigos">
                             <button><i class="fa fa-search" aria-hidden="true"></i></button>
                         </form>
                     </div>
@@ -48,13 +49,27 @@
                             <th>{{evento.estado}}</th>
                             <th>{{evento.horario}}</th>
                             <th>{{evento.lugar}}</th>
-                            <th><a href="">Editar</a></th>
-                            <th><a href="">Apagar</a></th>
+                            <th><a class="editar_apagar" href="/modifica_evento/{{evento.idEvento}}">Editar</a></th>
+                            <th><a class="editar_apagar" href="/listagem_evento/{{evento.idEvento}}">Apagar</a></th>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
 
+        {% if dados != undefined %}
+            <div class="apagar_registros">
+                <div class="card_confirmação">
+                    <a href="/listagem_evento" id="fechar"><i class="fa fa-times" aria-hidden="true"></i></a>
+                    <h2>Confirmação</h2>
+                    <hr>
+                    <p>Deseja realmente apagar o evento: {{dados.nome}}</p>
+                    <div class="btns_apagar_registros">
+                        <a class="btn_cancelar_registros" href="/listagem_evento">Cancelar</a>
+                        <a class="btn_apagar_registros" href="/apagar_evento/{{dados.idEvento}}">Apagar</a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
     </main>
 {% endblock %}

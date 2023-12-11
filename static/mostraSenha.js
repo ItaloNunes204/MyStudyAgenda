@@ -317,3 +317,12 @@ function validaData() {
         }
     }
 }
+
+setTimeout(()=>{
+    document.querySelector('#mensagemR').style.display = 'none';
+},5000)
+
+function tira_mensagem(){
+    const cadastrar = document.getElementById('mensagemR');
+    cadastrar.style.display = 'none';
+}
