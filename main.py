@@ -271,14 +271,14 @@ def listagem_materia():
             if not materias or materias == "sem registros":
                 if not materias:
                     flash("Erro ao coletar as informações")
+                    return redirect("/cliente")
                 else:
                     flash("Sem registros")
-                return redirect("/listagem_materia")
+                    return redirect("/listagem_materia")
             else:
                 for materia in materias:
                     materia.dias = fr.formata_dias_saida(materia.dias)
                     materia.estado = fr.formata_estado_saida(materia.estado)
-
                 if pesquisa == "":
                     return render_template("listagemMateria.html", materias=materias)
                 else:
@@ -297,9 +297,9 @@ def listagem_materia():
             if not materias or materias == "sem registros":
                 if not materias:
                     flash("Erro ao coletar as informações")
+                    return redirect("/cliente")
                 else:
-                    flash("Sem registros")
-                return redirect("/cliente")
+                    return render_template("listagemMateria.html", materias=None)
             else:
                 for materia in materias:
                     materia.dias = fr.formata_dias_saida(materia.dias)
@@ -365,9 +365,10 @@ def listagem_evento():
             if not eventos or eventos == "sem registros":
                 if not eventos:
                     flash("Erro ao coletar as informações")
+                    return redirect("/cliente")
                 else:
                     flash("Sem registros")
-                return redirect("/listagem_evento")
+                    return redirect("/listagem_evento")
             else:
                 for evento in eventos:
                     evento.estado = fr.formata_estado_saida(evento.estado)
@@ -390,9 +391,9 @@ def listagem_evento():
             if not eventos or eventos == "sem registros":
                 if not eventos:
                     flash("Erro ao coletar as informações")
+                    return redirect("/cliente")
                 else:
-                    flash("Sem registros")
-                return redirect("/cliente")
+                    return render_template("listagemEvento.html", eventos = None)
             else:
                 for evento in eventos:
                     evento.estado = fr.formata_estado_saida(evento.estado)
@@ -457,9 +458,10 @@ def listagem_atividades():
             if not atividades or atividades == "sem registros":
                 if not atividades:
                     flash("Erro ao coletar as informações")
+                    return redirect("/cliente")
                 else:
                     flash("Sem registros")
-                return redirect("/listagem_atividades")
+                    return redirect("/listagem_atividades")
             else:
                 for atividade in atividades:
                     atividade.estado = fr.formata_estado_saida(atividade.estado)
@@ -482,9 +484,9 @@ def listagem_atividades():
             if not atividades or atividades == "sem registros":
                 if not atividades:
                     flash("Erro ao coletar as informações")
+                    return redirect("/cliente")
                 else:
-                    flash("Sem registros")
-                return redirect("/cliente")
+                    return render_template("listagemAtividade.html", atividades=None)
             else:
                 for atividade in atividades:
                     atividade.estado = fr.formata_estado_saida(atividade.estado)
@@ -550,9 +552,10 @@ def listagem_tarefa():
             if not tarefas or tarefas == "sem registros":
                 if not tarefas:
                     flash("Erro ao coletar as informações")
+                    return redirect("/cliente")
                 else:
                     flash("Sem registros")
-                return redirect("/listagem_tarefa")
+                    return redirect("/listagem_tarefa")
             else:
                 for tarefa in tarefas:
                     tarefa.estado = fr.formata_estado_saida(tarefa.estado)
@@ -575,14 +578,16 @@ def listagem_tarefa():
             if not tarefas or tarefas == "sem registros":
                 if not tarefas:
                     flash("Erro ao coletar as informações")
+                    return redirect("/cliente")
                 else:
-                    flash("Sem registros")
-                return redirect("/cliente")
+                    return render_template("listagemTarefa.html", tarefas=None)
             else:
                 for tarefa in tarefas:
                     tarefa.estado = fr.formata_estado_saida(tarefa.estado)
                 return render_template("listagemTarefa.html", tarefas=tarefas)
 
+#criar a função para mostra a confirmação da tarefa
+#criar a função para apagar a tarefa 
 
 @app.route("/modifica_conta", methods=["POST", "GET"])
 def modifica_conta():
@@ -603,7 +608,7 @@ def modifica_conta():
                     flash("senhas incompativeis")
                     return redirect("/modifica_conta")
                 else:
-                    conta.senha = senha
+                    conta.senha = fr.codificando(senha)
             conta.nome = nome
             conta.curso = curso
             conta.periodo = periodo

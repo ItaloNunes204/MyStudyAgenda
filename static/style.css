@@ -136,6 +136,12 @@ main{
     color: #197BBD;
 }
 
+.container-form .card-form h3{
+    text-align: center;
+    margin-bottom: 20px;
+    color: #197BBD;
+}
+
 /* labels dos formulario*/
 .label-float input,.label-float-constante input{
     width: 100%;
@@ -239,20 +245,21 @@ select{
 
 }
 
+.container-tipo{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
 
-.tipos-esquerda a{
+.tipo_esquerda, .tipo_direita {
+    width: 48%;
+}
+
+.tipos-esquerda a, .tipos-direita a{
     color: #0d009c;
 }
 
-.tipos-esquerda a:hover{
-    color: #197BBD;
-}
-
-.tipos-direita a{
-    color: #0d009c;
-}
-
-.tipos-direita a:hover{
+.tipos-esquerda a:hover,.tipos-direita a:hover{
     color: #197BBD;
 }
 
@@ -477,7 +484,7 @@ tr{
 
 .pesquisa-tabela input{
     border: none;
-    background: none;
+    background: transparent;
     outline: none;
     padding: 0;
     color: white;
@@ -614,15 +621,19 @@ tr{
     margin: 0;
     color: #197BBD;
 }
-.card_confirmação a#fechar{
+.card_confirmação #fechar{
     position: absolute;
     right: 0;
     top: 0;
+    background:none;
+    border: none;
     font-size: 2rem;
     color: #000;
     padding: 1.5rem;
+    cursor: pointer;
+    
 }
-.card_confirmação a#fechar:hover{
+.card_confirmação #fechar:hover{
     color: #197BBD;
 }
 .card_confirmação hr{
@@ -681,7 +692,7 @@ tr{
       z-index: 5;
       top: 75px;
       right: 30px;
-      background-color: red;
+      background-color: rgb(48, 71, 216);
       color: white;
       padding: 10px;
       box-sizing: border-box;
@@ -694,8 +705,13 @@ tr{
 
 .btn-x{
     background:none;
-    color: white;
     border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-x:hover{
+    color: #000;
 }
 
 /* inicio footer */

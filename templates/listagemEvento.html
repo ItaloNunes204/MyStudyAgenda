@@ -1,26 +1,14 @@
 {% extends 'base.html' %}
 {% block conteudo %}
     <main>
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                    <div id="alerta" class="mensagem-alerta">
-                        <p>
-                            <a href=""><i class="fa fa-times" aria-hidden="true"></i></a>
-                            {{ message }}
-                        </p>
-                    </div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
         <div class="container-tabela">
             <table>
                 <caption>
                     <h2>listagem de Evento</h2>
                     <div class="pesquisa-tabela">
                         <form action="" method="post">
-                            <input type="text" class="pesquisa-txt" placeholder="pesquisar" name="pesquisa" id="pesquisa">
                             <input type="checkbox" id="antigos" name="antigos">
+                            <input type="text" class="pesquisa-txt" placeholder="pesquisar" name="pesquisa" id="pesquisa">
                             <button><i class="fa fa-search" aria-hidden="true"></i></button>
                         </form>
                     </div>
@@ -40,32 +28,46 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for evento in eventos %}
+                    {% if eventos == None%}
                         <tr>
-                            <th>{{evento.nome}}</th>
-                            <th>{{evento.inicio}}</th>
-                            <th>{{evento.fim}}</th>
-                            <th>{{evento.observacao}}</th>
-                            <th>{{evento.estado}}</th>
-                            <th>{{evento.horario}}</th>
-                            <th>{{evento.lugar}}</th>
-                            <th><a class="editar_apagar" href="/modifica_evento/{{evento.idEvento}}">Editar</a></th>
-                            <th><a class="editar_apagar" href="/listagem_evento/{{evento.idEvento}}">Apagar</a></th>
+                            <th><p>Sem registro</p></th>
+                            <th><p>Sem registro</p></th>
+                            <th><p>Sem registro</p></th>
+                            <th><p>Sem registro</p></th>
+                            <th><p>Sem registro</p></th>
+                            <th><p>Sem registro</p></th>
+                            <th><p>Sem registro</p></th>
+                            <th><p>Sem registro</p></th>
+                            <th><p>Sem registro</p></th>
                         </tr>
-                    {% endfor %}
+                    {% else %}
+                        {% for evento in eventos %}
+                            <tr>
+                                <th>{{evento.nome}}</th>
+                                <th>{{evento.inicio}}</th>
+                                <th>{{evento.fim}}</th>
+                                <th>{{evento.observacao}}</th>
+                                <th>{{evento.estado}}</th>
+                                <th>{{evento.horario}}</th>
+                                <th>{{evento.lugar}}</th>
+                                <th><a class="editar_apagar" href="/modifica_evento/{{evento.idEvento}}">Editar</a></th>
+                                <th><a class="editar_apagar" href="/listagem_evento/{{evento.idEvento}}">Apagar</a></th>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
                 </tbody>
             </table>
         </div>
 
         {% if dados != undefined %}
-            <div class="apagar_registros">
+            <div class="apagar_registros" id="confirmacao_card">
                 <div class="card_confirmação">
-                    <a href="/listagem_evento" id="fechar"><i class="fa fa-times" aria-hidden="true"></i></a>
+                    <button id="fechar" onclick="tira_confirmação()"><i class="fa fa-times" aria-hidden="true"></i></button>
                     <h2>Confirmação</h2>
                     <hr>
                     <p>Deseja realmente apagar o evento: {{dados.nome}}</p>
                     <div class="btns_apagar_registros">
-                        <a class="btn_cancelar_registros" href="/listagem_evento">Cancelar</a>
+                        <button class="btn_cancelar_registros" onclick="tira_confirmação()">Cancelar</button>
                         <a class="btn_apagar_registros" href="/apagar_evento/{{dados.idEvento}}">Apagar</a>
                     </div>
                 </div>

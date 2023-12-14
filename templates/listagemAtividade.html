@@ -1,18 +1,6 @@
 {% extends 'base.html' %}
 {% block conteudo %}
     <main>
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                    <div id="alerta" class="mensagem-alerta">
-                        <p>
-                            <a href=""><i class="fa fa-times" aria-hidden="true"></i></a>
-                            {{ message }}
-                        </p>
-                    </div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
         <div class="container-tabela">
             <table>
                 <caption>
@@ -41,32 +29,47 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for atividade in atividades %}
+                    {% if atividade == None %}
                         <tr>
-                            <th>{{atividade.nome}}</th>
-                            <th>{{atividade.inicio}}</th>
-                            <th>{{atividade.fim}}</th>
-                            <th>{{atividade.nota}}</th>
-                            <th>{{atividade.observacao}}</th>
-                            <th>{{atividade.estado}}</th>
-                            <th>{{atividade.horario}}</th>
-                            <th>{{atividade.nomeMateria}}</th>
-                            <th><a class="editar_apagar" href="/modifica_atividade/{{atividade.idAtividade}}">Editar</a></th>
-                            <th><a class="editar_apagar" href="/listagem_atividade/{{atividade.idAtividade}}">Apagar</a></th>
+                            <th><p>Sem registro</p></th>
+                            <th><p>Sem registro</p></th>
+                            <th><p>Sem registro</p></th>
+                            <th><p>Sem registro</p></th>
+                            <th><p>Sem registro</p></th>
+                            <th><p>Sem registro</p></th>
+                            <th><p>Sem registro</p></th>
+                            <th><p>Sem registro</p></th>
+                            <th><p>Sem registro</p></th>
+                            <th><p>Sem registro</p></th>
                         </tr>
-                    {% endfor %}
+                    {% else %}
+                        {% for atividade in atividades %}
+                            <tr>
+                                <th>{{atividade.nome}}</th>
+                                <th>{{atividade.inicio}}</th>
+                                <th>{{atividade.fim}}</th>
+                                <th>{{atividade.nota}}</th>
+                                <th>{{atividade.observacao}}</th>
+                                <th>{{atividade.estado}}</th>
+                                <th>{{atividade.horario}}</th>
+                                <th>{{atividade.nomeMateria}}</th>
+                                <th><a class="editar_apagar" href="/modifica_atividade/{{atividade.idAtividade}}">Editar</a></th>
+                                <th><a class="editar_apagar" href="/listagem_atividade/{{atividade.idAtividade}}">Apagar</a></th>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
                 </tbody>
             </table>
         </div>
         {% if dados != undefined %}
-            <div class="apagar_registros">
+            <div class="apagar_registros" id="confirmacao_card">
                 <div class="card_confirmação">
-                    <a href="/listagem_atividade" id="fechar"><i class="fa fa-times" aria-hidden="true"></i></a>
+                    <button id="fechar" onclick="tira_confirmação()"><i class="fa fa-times" aria-hidden="true"></i></button>
                     <h2>Confirmação</h2>
                     <hr>
                     <p>Deseja realmente apagar o evento: {{dados.nome}}</p>
                     <div class="btns_apagar_registros">
-                        <a class="btn_cancelar_registros" href="/listagem_atividade">Cancelar</a>
+                        <button class="btn_cancelar_registros" onclick="tira_confirmação()">Cancelar</button>
                         <a class="btn_apagar_registros" href="/apagar_atividade/{{dados.idAtividade}}">Apagar</a>
                     </div>
                 </div>
