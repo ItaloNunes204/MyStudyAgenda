@@ -4,9 +4,10 @@
         <div class="container-tabela">
             <table>
                 <caption>
-                    <h2>listagem de Tarefas</h2>
+                    <h2>Listagem de Tarefas</h2>
                     <div class="pesquisa-tabela">
-                        <form action="">
+                        <form action="/listagem_tarefa" method="post">
+                            <input type="checkbox" name="antigos" id="antigos">
                             <input type="text" class="pesquisa-txt" placeholder="pesquisar">
                             <button><i class="fa fa-search" aria-hidden="true"></i></button>
                         </form>
@@ -52,8 +53,8 @@
                                 <th>{{tarefa.estado}}</th>
                                 <th>{{tarefa.observacao}}</th>
                                 <th>{{tarefa.tipo}}</th>
-                                <th><a href="">Editar</a></th>
-                                <th><a href="">Apagar</a></th>
+                                <th><a href="/modifica_tarefa/{{tarefa.idTarefa}}" class="editar_apagar">Editar</a></th>
+                                <th><a href="/listagem_tarefa/{{tarefa.idTarefa}}" class="editar_apagar">Apagar</a></th>
                             </tr>
                         {% endfor %}
                     {% endif %}
@@ -70,7 +71,7 @@
                     <p>Deseja realmente apagar a tarefa: {{dados.nome}}</p>
                     <div class="btns_apagar_registros">
                         <button class="btn_cancelar_registros" onclick="tira_confirmação()">Cancelar</button>
-                        <a class="btn_apagar_registros" href="/apagar_materia/{{dados.idMateria}}">Apagar</a>
+                        <a class="btn_apagar_registros" href="/apagar_tarefa/{{dados.idTarefa}}">Apagar</a>
                     </div>
                 </div>
             </div>

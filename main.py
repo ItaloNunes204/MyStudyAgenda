@@ -586,8 +586,47 @@ def listagem_tarefa():
                     tarefa.estado = fr.formata_estado_saida(tarefa.estado)
                 return render_template("listagemTarefa.html", tarefas=tarefas)
 
-#criar a função para mostra a confirmação da tarefa
-#criar a função para apagar a tarefa 
+
+@app.route("/listagem_tarefa/<id_tarefa>", methods=["POST", "GET"])
+def listagem_tarefa_apagar(id_tarefa):
+    if not session.get("name"):
+        return redirect("/login")
+    else:
+        email = session.get("name")
+        tarefas = bd.get_tarefas(email, True)
+        dados = bd.get_tarefas_id(email, id_tarefa)
+        if not tarefas or tarefas == "sem registros":
+            if not tarefas:
+                flash("Erro ao coletar as informações")
+            else:
+                flash("Sem registros")
+            return redirect("/cliente")
+
+        if not dados or dados == "sem registros":
+            if not dados:
+                flash("Erro ao coletar as informações")
+            else:
+                flash("Sem registros")
+            return redirect("/cliente")
+        else:
+            for tarefa in tarefas:
+                    tarefa.estado = fr.formata_estado_saida(tarefa.estado)
+            return render_template("listagemTarefa.html", tarefas=tarefas, dados=dados)
+
+
+@app.route("/apagar_tarefa/<id_tarefa>", methods=["POST", "GET"])
+def apagar_tarefa(id_tarefa):
+    if not session.get("name"):
+        return redirect("/login")
+    else:
+        email = session.get("name")
+        tarefas = bd.get_tarefa_id(email, id_tarefa)
+        if bd.apagar_tarefa(tarefas[0]):
+            flash("tarefa apagada")
+        else:
+            flash("erro ao apagar a tarefa")
+        return redirect("/listagem_tarefa")
+
 
 @app.route("/modifica_conta", methods=["POST", "GET"])
 def modifica_conta():

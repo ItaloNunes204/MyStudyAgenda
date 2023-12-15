@@ -71,3 +71,14 @@ class Tarefa:
         self.tipo = tipo
         self.email = email
         self.idTarefa = id_tarefa
+
+
+class Agenda:
+    def __init__(self, nome, descricao , dia):
+        self.nome = nome
+        self.descricao = descricao
+        self.dia = dia
+
+
+
+        

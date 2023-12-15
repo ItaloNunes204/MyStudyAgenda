@@ -111,7 +111,7 @@ def get_conta(email):
         saida = classes.Conta(linha[0], linha[1], linha[2], linha[3], linha[4], linha[5], linha[6], linha[7], linha[8])
     except Error as e:
         print("Erro ao coletar informações da conta: {}".format(e))
-        saida = "Erro"
+        saida = False
     return saida
 
 
@@ -129,7 +129,7 @@ def get_materia(email, estado):
                 saida.append(classes.Materia(linha[0], linha[1], linha[2], linha[3], linha[4], linha[5], linha[6], linha[7], linha[8], linha[9], linha[10]))
     except Error as e:
         print("Erro ao coletar as materias: {}".format(e))
-        saida = "Erro"
+        saida = False
     return saida
 
 
@@ -147,7 +147,7 @@ def get_atividade(email, estado):
                 saida.append(classes.Atividade(linha[0], linha[1], linha[2], linha[3], linha[4], linha[5], linha[6], linha[7], linha[8], linha[9], linha[10], linha[11], linha[12]))
     except Error as e:
         print("Erro ao coletar as atividades: {}".format(e))
-        saida = "Erro"
+        saida = False
     return saida
 
 
@@ -167,7 +167,7 @@ def get_evento(email, estado):
                                    linha[8], linha[9]))
     except Error as e:
         print("Erro ao coletar as atividades: {}".format(e))
-        saida = "Erro"
+        saida = False
     return saida
 
 
@@ -186,7 +186,7 @@ def get_tarefas(email, estado):
                     classes.Tarefa(linha[0], linha[1], linha[2], linha[3], linha[4], linha[5], linha[6], linha[7], linha[8], linha[9], linha[10]))
     except Error as e:
         print("Erro ao coletar as tarefas: {}".format(e))
-        saida = "Erro"
+        saida = False
     return saida
 
 
@@ -280,13 +280,13 @@ def get_evento_id(email, id_evento):
                                    linha[8], linha[9]))
     except Error as e:
         print("Erro ao coletar as atividades: {}".format(e))
-        saida = "Erro"
+        saida = False
     return saida
 
 
 # coleta a atividade com o id
 def get_atividade_id(email, id_atividade):
-    comando = ("SELECT*FROM mystudyagenda.atividade WHERE email = \'{}\' and id_atividade = {}".format(email, id_atividade))
+    comando = ("SELECT*FROM mystudyagenda.atividade WHERE email = \'{}\' and idAtividade = {}".format(email, id_atividade))
     try:
         cursor.execute(comando)
         linhas = cursor.fetchall()
@@ -298,7 +298,7 @@ def get_atividade_id(email, id_atividade):
                 saida.append(classes.Atividade(linha[0], linha[1], linha[2], linha[3], linha[4], linha[5], linha[6], linha[7], linha[8], linha[9], linha[10], linha[11], linha[12]))
     except Error as e:
         print("Erro ao coletar as atividades: {}".format(e))
-        saida = "Erro"
+        saida = False
     return saida
 
 
@@ -317,7 +317,7 @@ def get_tarefas_id(email, id_tarefa):
                     classes.Tarefa(linha[0], linha[1], linha[2], linha[3], linha[4], linha[5], linha[6], linha[7], linha[8], linha[9], linha[10]))
     except Error as e:
         print("Erro ao coletar as tarefas: {}".format(e))
-        saida = "Erro"
+        saida = False
     return saida
 
 
@@ -335,7 +335,7 @@ def get_materia_id(email, id_materia):
                 saida.append(classes.Materia(linha[0], linha[1], linha[2], linha[3], linha[4], linha[5], linha[6], linha[7], linha[8], linha[9], linha[10]))
     except Error as e:
         print("Erro ao coletar as materias: {}".format(e))
-        saida = "Erro"
+        saida = False
     return saida
 
 
