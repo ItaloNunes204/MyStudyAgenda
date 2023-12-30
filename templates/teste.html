@@ -64,19 +64,65 @@
 
     </header>
     
-    {% block conteudo %}
-    {% endblock %}
+    <main>
 
+        <form action="/cadastro_atividades" method="post" class="container-form">
+            <div class="card-form">
+                <h1>Cadastro de Atividade</h1>
+                <div class="label-float">
+                    <input type="text" id="nome" name="nome" oninput="validaNome(); validaAtividade()" required>
+                    <label for="nome" id="labelNome">Nome</label>
+                </div>
 
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        {% for message in messages %}
-            <div class="mensagem_rapida" id="mensagemR">
-                <p>{{ message }}  <button class="btn-x" onclick="tira_mensagem()"><i class="fa fa-times" aria-hidden="true"></i></button></p>
+                <div class="label-float-constante">
+                    <input type="date" id="inicio" name="inicio" oninput="validaInicio(); validaAtividade()" required>
+                    <label for="inicio" id="labelInicio">Data de Inicio</label>
+                </div>
+
+                <div class="label-float-constante">
+                    <input type="date" id="fim" name="fim" oninput="validaData(); validaAtividade()" required>
+                    <label for="fim" id="labelFim">Data do Termino</label>
+                </div>
+
+                <div class="label-float-constante">
+                    <input type="time" id="horario" name="horario" oninput="validaHorario(); validaAtividade()" required>
+                    <label for="horario" id="labelHorario">Horario</label>
+                </div>
+
+                <div class="label-float">
+                    <input type="number" min="0" id="nota" name="nota" oninput="validaNota(); validaAtividade()" required>
+                    <label for="nota" id="labelNota">Nota da Atividadde </label>
+                </div>
+                
+                <br>
+                <div>
+                    <select id="materia" name="materia" required>
+                        <option value="">Materia da Atividade</option>
+                        {% for materia in materias%}
+                            <option value={{materia.nome}}>{{materia.nome}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
+                <br>
+                <div class="label-float">
+                    <input type="text" id="observacao" name="observacao" oninput="validaObservacao(); validaAtividade()" required>
+                    <label for="observacao" id="labelObservacao">Observação</label>
+                </div>
+                <div>
+                    <p class="justify-center" id="mensagemCadastro">Exibir atividade ao longo do período.</p>
+                    <br>
+                    <div class="justify-center">
+                        <input type="checkbox" checked id="intervalo" name="intervalo">
+                    </div>
+                </div>
+                <div class="justify-center">
+                    <button class="btn-cadastrar" id="btn-cadastrar" name="btn-cadastrar" type="submit" onclick="trocarBotao()">Cadastrar</button>
+                    <button class="btn-loading" id="btn-loading" name="btn-loading"><i class="fa fa-spinner" aria-hidden="true" id="loading"></i>Carregando</button>
+                </div>
             </div>
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
+        </form>
+        
+    </main>
 
     <br>
     <footer class="footer">
@@ -116,8 +162,10 @@
             </div>
         </div>
    </footer>
+
     <script src="../static/mostraSenha.js"></script>
     <script src="../static/mostraTelas.js"></script>
+    <script src="../static/valiadaFormulario.js"></script>
     <script src="../static/navbar.js"></script>
 </body>
 </html>

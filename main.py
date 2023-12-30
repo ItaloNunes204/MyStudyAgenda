@@ -246,14 +246,6 @@ def cadastro_tarefas():
             return render_template("cadastroTarefas.html")
 
 
-@app.route("/consulta")
-def consulta():
-    if not session.get("name"):
-        return redirect("/login")
-    else:
-        return render_template("consulta.html")
-
-
 @app.route("/listagem_materia", methods=["POST", "GET"])
 def listagem_materia():
     if not session.get("name"):
