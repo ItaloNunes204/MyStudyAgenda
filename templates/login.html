@@ -23,6 +23,7 @@
             </div>
         </nav>
     </header>
+
     <main>
         <form action="/login" method="post" class="container-form">
             <div class="card-form">
@@ -47,9 +48,8 @@
                     <i class="fa fa-eye" aria-hidden="true" id="btn-senha"  onclick="mostraSenha()"></i>
                 </div>
                 <div class="justify-center">
-                    <button class="btn-cadastrar" id="btn-cadastrar" name="btn-cadastrar" type="submit" onclick="trocarBotao()">Cadastrar</button>
-                    <button class="btn-loading" id="btn-loading" name="btn-loading"><i class="fa fa-spinner" aria-hidden="true" id="loading"></i>
-                        Acessando</button>
+                    <button class="btn-cadastrar" id="btn-cadastrar" name="btn-cadastrar" type="submit" onclick="trocarBotao()">Entrar</button>
+                    <button class="btn-loading" id="btn-loading" name="btn-loading"><i class="fa fa-spinner" aria-hidden="true" id="loading"></i>Entrando</button>
                 </div>
                 
                 <div class='justify-center'>
@@ -63,7 +63,9 @@
             </div>
         </form>
     </main>
+
     <br>
+    
     <footer class="footer">
         <div class="container-footer">
             <div class="row">
@@ -101,7 +103,11 @@
             </div>
         </div>
    </footer>
-    <script src="../static/navbar.js"></script>
-    <script src="../static/mostraSenha.js"></script>
+   <script src="../static/mensagens.js"></script>
+   <script src="../static/mostraSenha.js"></script>
+   <script src="../static/mostraTelas.js"></script>
+   <script src="../static/navbar.js"></script>
+   <script src="../static/valiadaFormulario.js"></script>
+   <script src="../static/validacao_funcoes.js"></script>
 </body>
 </html>

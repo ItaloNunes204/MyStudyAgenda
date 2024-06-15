@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block conteudo %}
     <main>
-        <form action="/modifica_evento" method="post" class="container-form">
+        <form action="/modifica_evento/{{evento.idEvento}}" method="post" class="container-form">
             <div class="card-form">
                 <h1>Modifica Evento</h1>
                 
@@ -19,20 +19,6 @@
                     <input type="date" id="fim" name="fim" oninput="validaData()" required value="{{evento.fim}}">
                     <label for="fim" id="labelFim">Data do Termino</label>
                 </div>
-
-                <div>
-                    <p class="justify-center">Exibir atividade ao longo do período.</p>
-                    <br>
-                    {% if evento.intervalo == True%}
-                        <div class="justify-center">
-                            <input type="checkbox" checked id="intervalo" name="intervalo">
-                        </div>
-                    {% else %}
-                        <div class="justify-center">
-                            <input type="checkbox" id="intervalo" name="intervalo">
-                        </div>
-                    {% endif %}
-                </div>
                 
                 <div class="label-float-constante">
                     <input type="time" id="horario" name="horario" oninput="validaHorario()" value="{{evento.horario}}" required>
@@ -47,6 +33,20 @@
                 <div class="label-float">
                     <input type="text" id="observacao" name="observacao" oninput="validaObservacao()" required value="{{evento.observacao}}">
                     <label for="observacao" id="labelObservacao">Observação</label>
+                </div>
+
+                <div>
+                    <p class="justify-center">Exibir atividade ao longo do período.</p>
+                    <br>
+                    {% if evento.intervalo == True%}
+                        <div class="justify-center">
+                            <input type="checkbox" checked id="intervalo" name="intervalo">
+                        </div>
+                    {% else %}
+                        <div class="justify-center">
+                            <input type="checkbox" id="intervalo" name="intervalo">
+                        </div>
+                    {% endif %}
                 </div>
 
                 <div class="justify-center">

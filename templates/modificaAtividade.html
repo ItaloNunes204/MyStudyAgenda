@@ -32,7 +32,7 @@
                     <label for="horario" id="labelHorario">Horario</label>
                 </div>
                 <div class="label-float">
-                    <input type="number" step="0.01" id="nota_atividade" name="nota_atividade" oninput="validaNota()" value="{{atividade.nota}}" required>
+                    <input type="number" step="0.01" id="nota_atividade" name="nota_atividade" oninput="validaNota()" value="{{atividade.notaAtividade}}" required>
                     <label for="nota_atividade" id="labelNotaAtividade">Nota da Atividadde </label>
                 </div>
                 <div class="label-float">
@@ -52,7 +52,7 @@
                 </div>
                 <br>
                 <div class="label-float">
-                    <input type="text" id="observacao" name="observacao" oninput="validaObservacao()" required value="{{materia.observacao}}">
+                    <input type="text" id="observacao" name="observacao" oninput="validaObservacao()" required value="{{atividade.observacao}}">
                     <label for="observacao" id="labelObservacao">Observação</label>
                 </div>
                 <div class="justify-center">

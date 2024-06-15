@@ -73,12 +73,9 @@ class Tarefa:
         self.idTarefa = id_tarefa
 
 
-class Agenda:
-    def __init__(self, nome, descricao , dia):
-        self.nome = nome
-        self.descricao = descricao
+class calendario:
+    def __init__(self, dia, diaS ,tipo, descricao):
         self.dia = dia
-
-
-
-        
+        self.diaS = diaS
+        self.tipo = tipo
+        self.descricao = descricao

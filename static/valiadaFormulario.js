@@ -1,28 +1,33 @@
 function validaAtividade(){
-    const cores = [];
+    var cores = true;
     const nome = document.getElementById('labelNome');
-    cores.push(window.getComputedStyle(nome).getPropertyValue('color'));
+    if(window.getComputedStyle(nome).getPropertyValue('color')!=="rgb(0, 128, 0)"){
+        cores = false
+    }
     const inicio = document.getElementById('labelInicio');
-    cores.push(window.getComputedStyle(inicio).getPropertyValue('color'));
+    if(window.getComputedStyle(inicio).getPropertyValue('color')!=="rgb(0, 128, 0)"){
+        cores = false
+    }
     const fim = document.getElementById('labelFim');
-    cores.push(window.getComputedStyle(fim).getPropertyValue('color'));
+    if(window.getComputedStyle(fim).getPropertyValue('color')!=="rgb(0, 128, 0)"){
+        cores = false
+    }
     const hora = document.getElementById('labelHorario');
-    cores.push(window.getComputedStyle(hora).getPropertyValue('color'));
+    if(window.getComputedStyle(hora).getPropertyValue('color')!=="rgb(0, 128, 0)"){
+        cores = false
+    }
     const nota = document.getElementById('labelNota');
-    cores.push(window.getComputedStyle(nota).getPropertyValue('color'));
+    if(window.getComputedStyle(nota).getPropertyValue('color')!=="rgb(0, 128, 0)"){
+        cores = false
+    }
     //var materia = document.getElementById('materia');
     //cores.push(window.getComputedStyle(materia).getPropertyValue('border-color'));
     const observacao = document.getElementById('labelObservacao');
-    cores.push(window.getComputedStyle(observacao).getPropertyValue('color'));
-    let contador = 0;
-    for(var i = 0; i < cores.length;i++){
-        if(cores[i] === "rgb(0, 128, 0)"){
-            contador++;
-        }
+    if(window.getComputedStyle(observacao).getPropertyValue('color')!=="rgb(0, 128, 0)"){
+        cores = false
     }
-    alert("a quantidade de campos validos e: " + contador);
     const botao = document.getElementById('btn-cadastrar');
-    if(contador === cores.length){
+    if(cores == true){
         botao.style.display = 'block';
     }else{
         botao.style.display = 'none';

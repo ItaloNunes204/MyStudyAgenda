@@ -27,15 +27,35 @@
             </div>
         </nav>
     </header>
+
+
     <main>
         <div class="agenda">
             <table>
                 <caption>
-                    <h2>agenda Semanal</h2>
+                    <h2>Calendario</h2>
+                    <form action="/calendario" method="post">
+                        <select id="meses" name="meses" required>
+                            <option value="">Escolha um mes</option>
+                            <option value="Janeiro">Janeiro</option>
+                            <option value="Fevereiro">Fevereiro</option>
+                            <option value="Marco">Março</option>
+                            <option value="Abril">Abril</option>
+                            <option value="Maio">Maio</option>
+                            <option value="Junho">Junho</option>
+                            <option value="Julho">Julho</option>
+                            <option value="Agosto">Agosto</option>
+                            <option value="Setembro">Setembro</option>
+                            <option value="Outubro">Outubro</option>
+                            <option value="Novembro">Novembro</option>
+                            <option value="Dezembro">Dezembro</option>
+                        </select>
+                        <button id="busca_meses" type="submit">buscar</button>
+                    </form>
+                    <a href="/calendario"><button id="busca_meses" >mes atual</button></a>
                 </caption>
                 <thead>
                     <tr id="cabecalho-tabela">
-                        <th>****</th>
                         <th>segunda-feira</th>
                         <th>terça-feira</th>
                         <th>quarta-feira</th>
@@ -46,125 +66,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="linha_agenda">
-                        <th>7:00</th>
-                        <th class="materia">introdução
-                            <div class="description">João é um funcionário dedicado.</div>
-                        </th>
-                        <th class="atividade">---
-                            <div class="description">João é um funcionário dedicado.</div>
-                        </th>
-                        <th class="tarefa">---
-                            <div class="description">João é um funcionário dedicado.</div>
-                        </th>
-                        <th class="evento">---
-                            <div class="description">João é um funcionário dedicado.</div>
-                        </th>
-                        <th>---
-                            <div class="description">João é um funcionário dedicado.</div>
-                        </th>
-                        <th>---
-                            <div class="description">João é um funcionário dedicado.</div>
-                        </th>
-                        <th>---
-                            <div class="description">João é um funcionário dedicado.</div>
-                        </th>
-                    </tr>
-                    <tr class="linha_agenda">
-                        <th>13:00
-                            <div class="description">João é um funcionário dedicado.</div>
-                        </th>
-                        <th>calculo
-                            <div class="description">João é um funcionário dedicado.</div>
-                        </th>
-                        <th>pds
-                            <div class="description">João é um funcionário dedicado.</div>
-                        </th>
-                        <th>calculo
-                            <div class="description">João é um funcionário dedicado.</div>
-                        </th>
-                        <th>pds
-                            <div class="description">João é um funcionário dedicado.</div>
-                        </th>
-                        <th>calculo
-                            <div class="description">João é um funcionário dedicado.</div>
-                        </th>
-                        <th>---
-                            <div class="description">João é um funcionário dedicado.</div>
-                        </th>
-                        <th>---
-                            <div class="description">João é um funcionário dedicado.</div>
-                        </th>
-                    </tr>
-                    <tr class="linha_agenda">
-                        <th>13:00
-                            <div class="description">João é um funcionário dedicado.</div>
-                        </th>
-                        <th>calculo
-                            <div class="description">João é um funcionário dedicado.</div>
-                        </th>
-                        <th>pds
-                            <div class="description">João é um funcionário dedicado.</div>
-                        </th>
-                        <th>calculo
-                            <div class="description">João é um funcionário dedicado.</div>
-                        </th>
-                        <th>pds
-                            <div class="description">João é um funcionário dedicado.</div>
-                        </th>
-                        <th>calculo
-                            <div class="description">João é um funcionário dedicado.</div>
-                        </th>
-                        <th>---
-                            <div class="description">João é um funcionário dedicado.</div>
-                        </th>
-                        <th>---
-                            <div class="description">João é um funcionário dedicado.</div>
-                        </th>
-                    </tr>
-                    <tr class="linha_agenda">
-                        <th >13:00
-                            <div class="description">João é um funcionário dedicado.</div>
-                        </th>
-                        <th>calculo
-                            <div class="description">João é um funcionário dedicado.</div>
-                        </th>
-                        <th>pds
-                            <div class="description">João é um funcionário dedicado.</div>
-                        </th>
-                        <th>calculo
-                            <div class="description">João é um funcionário dedicado.</div>
-                        </th>
-                        <th>pds
-                            <div class="description">João é um funcionário dedicado.</div>
-                        </th>
-                        <th>calculo
-                            <div class="description">João é um funcionário dedicado.</div>
-                        </th>
-                        <th>---
-                            <div class="description">João é um funcionário dedicado.</div>
-                        </th>
-                        <th>---
-                            <div class="description">João é um funcionário dedicado.</div>
-                        </th>
-                    </tr>
+                    {% for linha in calendario %}
+                        <tr class="linha_agenda">
+                            {% for celula in linha %}
+                                <th class="materia">{{celula.dia}}
+                                    <div class="description">{{celula.descricao}}</div>
+                                </th>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
         <br>
-        <div class="container-form">
-            <div class="card-agenda">
-                <div class="justify-center">
-                    <h1>Assuntos semanais</h1>
-                </div>
-                <div class="assuntos">
-                    <ul>
-                        <li>introdução wijduahfyagasdnvkjhfkajshbfnjcvuhbcjjdvufhvbdjivfubhvjidfubhvdibfuhififjbijfjifbijfiofbij</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
     </main>
+
+
     <footer class="footer">
         <div class="container-footer">
             <div class="row">

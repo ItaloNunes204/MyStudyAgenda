@@ -1,171 +1,112 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../static/favicon.png" >
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">  
-    <link rel="stylesheet" href="../static/style.css">
-    <title>MyStudyAgenda</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkbox Layout</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .column {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .column:nth-child(2) {
+        margin-left: 20px; /* Defina o espaçamento entre as colunas */
+    }
+
+    .input-group {
+        margin-bottom: 10px; /* Defina o espaçamento entre os inputs */
+    }
+</style>
 </head>
 <body>
-
-    <header class="header">
-        <nav class="navbar">
-            <a class="logo" href="/cliente">MyStudyAgenda</a>
-            <ul class="nav-menu">
-                <li class="nav-item"><a class="nav-link" href="#" id="mostrarCadastros">Cadastros</a></li>
-                <li class="nav-item"><a class="nav-link" href="#" id="mostrarConsultas">Consulta</a></li>
-                <li class="nav-item"><a class="nav-link" href="/modifica_conta">Editar Conta</a></li>
-                <li class="nav-item"><a class="nav-link" href="/sair">Sair</a></li>
-            </ul>
-            <div class="hamburguer">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+    <div class="container">
+        <div class="column">
+            <div class="input-group">
+                <input type="checkbox" id="checkbox1" name="checkbox1">
+                <label for="checkbox1">Checkbox 1</label>
             </div>
-        </nav>
-
-        <div class="popup" id="cadastros">
-            <div class="popup-content">
-              <span class="close" id="fecharCadastros">&times;</span>
-                <h2>Cadastros</h2>
-                <div class="row">
-                    <div class="column">
-                        <a class="link" href="/cadastro_materias">Matéria</a>
-                        <a class="link" href="/cadastro_eventos">Evento</a>
-                    </div>
-                    <div class="column">
-                        <a class="link" href="/cadastro_atividades">Atividade</a>
-                        <a class="link" href="/cadastro_tarefas">Tarefa</a>
-                    </div>
-                </div>
+            <div class="input-group">
+                <input type="checkbox" id="checkbox2" name="checkbox2">
+                <label for="checkbox2">Checkbox 2</label>
+            </div>
+            <div class="input-group">
+                <input type="checkbox" id="checkbox3" name="checkbox3">
+                <label for="checkbox3">Checkbox 3</label>
+            </div>
+            <div class="input-group">
+                <input type="checkbox" id="checkbox4" name="checkbox4">
+                <label for="checkbox4">Checkbox 4</label>
             </div>
         </div>
-
-        <div class="popup" id="consultas">
-            <div class="popup-content">
-              <span class="close" id="fecharConsultas">&times;</span>
-                <h2>Consultas</h2>
-                <div class="row">
-                    <div class="column">
-                        <a href="/listagem_materia" class="link">Matérias</a>
-                        <a href="/listagem_evento" class="link">Eventos</a>
-                        <a href="/listagem_atividade" class="link">Atividades</a>
-                    </div>
-                    <div class="column">
-                        <a href="/listagem_tarefa" class="link">Tarefas</a>
-                        <a href="" class="link">Agenda mensal</a>
-                        <a href="" class="link">Agenda semanal</a>
-                    </div>
-                </div>
+        <div class="column">
+            <div class="input-group">
+                <input type="checkbox" id="checkbox5" name="checkbox5">
+                <label for="checkbox5">Checkbox 5</label>
+            </div>
+            <div class="input-group">
+                <input type="checkbox" id="checkbox6" name="checkbox6">
+                <label for="checkbox6">Checkbox 6</label>
+            </div>
+            <div class="input-group">
+                <input type="checkbox" id="checkbox7" name="checkbox7">
+                <label for="checkbox7">Checkbox 7</label>
+            </div>
+            <div class="input-group">
+                <input type="checkbox" id="checkbox8" name="checkbox8">
+                <label for="checkbox8">Checkbox 8</label>
             </div>
         </div>
+    </div>
+    <script>
+        function toggleAllCheckboxes() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const checkboxAll = document.createElement('input');
+            checkboxAll.type = 'checkbox';
+            checkboxAll.id = 'checkboxAll';
+            checkboxAll.name = 'checkboxAll';
+            checkboxAll.style.marginBottom = '10px';
+            const labelAll = document.createElement('label');
+            labelAll.htmlFor = 'checkboxAll';
+            labelAll.textContent = 'Marca Todos';
+            document.body.insertBefore(checkboxAll, document.body.firstChild);
+            document.body.insertBefore(labelAll, document.body.firstChild);
 
-    </header>
-    
-    <main>
+            checkboxAll.addEventListener('change', function() {
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = this.checked;
+                });
+            });
 
-        <form action="/cadastro_atividades" method="post" class="container-form">
-            <div class="card-form">
-                <h1>Cadastro de Atividade</h1>
-                <div class="label-float">
-                    <input type="text" id="nome" name="nome" oninput="validaNome(); validaAtividade()" required>
-                    <label for="nome" id="labelNome">Nome</label>
-                </div>
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    if (!this.checked) {
+                        checkboxAll.checked = false;
+                    } else {
+                        const allChecked = [...checkboxes].every(checkbox => checkbox.checked);
+                        if (allChecked) {
+                            checkboxAll.checked = true;
+                        }
+                    }
+                });
+            });
+        }
 
-                <div class="label-float-constante">
-                    <input type="date" id="inicio" name="inicio" oninput="validaInicio(); validaAtividade()" required>
-                    <label for="inicio" id="labelInicio">Data de Inicio</label>
-                </div>
-
-                <div class="label-float-constante">
-                    <input type="date" id="fim" name="fim" oninput="validaData(); validaAtividade()" required>
-                    <label for="fim" id="labelFim">Data do Termino</label>
-                </div>
-
-                <div class="label-float-constante">
-                    <input type="time" id="horario" name="horario" oninput="validaHorario(); validaAtividade()" required>
-                    <label for="horario" id="labelHorario">Horario</label>
-                </div>
-
-                <div class="label-float">
-                    <input type="number" min="0" id="nota" name="nota" oninput="validaNota(); validaAtividade()" required>
-                    <label for="nota" id="labelNota">Nota da Atividadde </label>
-                </div>
-                
-                <br>
-                <div>
-                    <select id="materia" name="materia" required>
-                        <option value="">Materia da Atividade</option>
-                        {% for materia in materias%}
-                            <option value={{materia.nome}}>{{materia.nome}}</option>
-                        {%endfor%}
-                    </select>
-                </div>
-                <br>
-                <div class="label-float">
-                    <input type="text" id="observacao" name="observacao" oninput="validaObservacao(); validaAtividade()" required>
-                    <label for="observacao" id="labelObservacao">Observação</label>
-                </div>
-                <div>
-                    <p class="justify-center" id="mensagemCadastro">Exibir atividade ao longo do período.</p>
-                    <br>
-                    <div class="justify-center">
-                        <input type="checkbox" checked id="intervalo" name="intervalo">
-                    </div>
-                </div>
-                <div class="justify-center">
-                    <button class="btn-cadastrar" id="btn-cadastrar" name="btn-cadastrar" type="submit" onclick="trocarBotao()">Cadastrar</button>
-                    <button class="btn-loading" id="btn-loading" name="btn-loading"><i class="fa fa-spinner" aria-hidden="true" id="loading"></i>Carregando</button>
-                </div>
-            </div>
-        </form>
-        
-    </main>
-
-    <br>
-    <footer class="footer">
-        <div class="container-footer">
-            <div class="row">
-                <div class="footer-col">
-                    <h4>Projeto</h4>
-                    <ul class="lista_footer">
-                        <li><a href="#">Sobre</a></li>
-                        <li><a href="#">Seviços</a></li>
-                        <li><a href="#">privacidade</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Contato</h4>
-                    <ul>
-                        <li><a href="#">Contato</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Funcionalidades</h4>
-                    <ul>
-                        <li><a href="#">Cadastro Atividade </a></li>
-                        <li><a href="#">Cadastro Evento</a></li>
-                        <li><a href="#">Cadastro Materia</a></li>
-                        <li><a href="#">Consulta</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>follow us</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                        <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-   </footer>
-
-    <script src="../static/mostraSenha.js"></script>
-    <script src="../static/mostraTelas.js"></script>
-    <script src="../static/valiadaFormulario.js"></script>
-    <script src="../static/navbar.js"></script>
+        toggleAllCheckboxes();
+    </script>
 </body>
 </html>

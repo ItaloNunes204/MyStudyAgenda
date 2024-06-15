@@ -133,6 +133,23 @@ def get_materia(email, estado):
     return saida
 
 
+def get_all_materia(email):
+    comando = ("SELECT*FROM mystudyagenda.materia WHERE email = \'{}\' ".format(email))
+    try:
+        cursor.execute(comando)
+        linhas = cursor.fetchall()
+        if len(linhas) == 0:
+            saida = "sem registros"
+        else:
+            saida = []
+            for linha in linhas:
+                saida.append(classes.Materia(linha[0], linha[1], linha[2], linha[3], linha[4], linha[5], linha[6], linha[7], linha[8], linha[9], linha[10]))
+    except Error as e:
+        print("Erro ao coletar as materias: {}".format(e))
+        saida = False
+    return saida
+
+
 # coleta todas as atividades
 def get_atividade(email, estado):
     comando = ("SELECT*FROM mystudyagenda.atividade WHERE email = \'{}\' and estado = {}".format(email, estado))
@@ -150,6 +167,22 @@ def get_atividade(email, estado):
         saida = False
     return saida
 
+
+def get_all_atividades(email):
+    comando = ("SELECT*FROM mystudyagenda.atividade WHERE email = \'{}\'".format(email))
+    try:
+        cursor.execute(comando)
+        linhas = cursor.fetchall()
+        if len(linhas) == 0:
+            saida = "sem registros"
+        else:
+            saida = []
+            for linha in linhas:
+                saida.append(classes.Atividade(linha[0], linha[1], linha[2], linha[3], linha[4], linha[5], linha[6], linha[7], linha[8], linha[9], linha[10], linha[11], linha[12]))
+    except Error as e:
+        print("Erro ao coletar as atividades: {}".format(e))
+        saida = False
+    return saida
 
 # coleta todos os eventos
 def get_evento(email, estado):
@@ -171,9 +204,45 @@ def get_evento(email, estado):
     return saida
 
 
+def get_all_eventos(email):
+    comando = ("SELECT*FROM mystudyagenda.evento WHERE email = \'{}\'".format(email))
+    try:
+        cursor.execute(comando)
+        linhas = cursor.fetchall()
+        if len(linhas) == 0:
+            saida = "sem registros"
+        else:
+            saida = []
+            for linha in linhas:
+                saida.append(
+                    classes.Evento(linha[0], linha[1], linha[2], linha[3], linha[4], linha[5], linha[6], linha[7],
+                                   linha[8], linha[9]))
+    except Error as e:
+        print("Erro ao coletar as atividades: {}".format(e))
+        saida = False
+    return saida
+
 # coleta todas as tarefas
 def get_tarefas(email, estado):
     comando = ("SELECT*FROM mystudyagenda.tarefas WHERE email = \'{}\' and estado = {}".format(email, estado))
+    try:
+        cursor.execute(comando)
+        linhas = cursor.fetchall()
+        if len(linhas) == 0:
+            saida = "sem registros"
+        else:
+            saida = []
+            for linha in linhas:
+                saida.append(
+                    classes.Tarefa(linha[0], linha[1], linha[2], linha[3], linha[4], linha[5], linha[6], linha[7], linha[8], linha[9], linha[10]))
+    except Error as e:
+        print("Erro ao coletar as tarefas: {}".format(e))
+        saida = False
+    return saida
+
+
+def get_all_tarefas(email):
+    comando = ("SELECT*FROM mystudyagenda.tarefas WHERE email = \'{}\'".format(email))
     try:
         cursor.execute(comando)
         linhas = cursor.fetchall()
@@ -354,7 +423,7 @@ def apagar_materia(materia):
 
 # apaga a atividade do banco
 def apagar_atividade(atividade):
-    comando = ("DELETE FROM mystudyagenda.atividade WHERE id_atividade = {}".format(atividade.idAtividade))
+    comando = ("DELETE FROM mystudyagenda.atividade WHERE idAtividade = {}".format(atividade.idAtividade))
     try:
         cursor.execute(comando)
         con.commit()

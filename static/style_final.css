@@ -413,16 +413,7 @@ header .popup .popup-content .row .column .link {
 .container-form .card-form .btn-loading{
     display: none;
 }
-.colunas_dias{
-    display: flex;
-    flex-direction: column;
-}
-.colunas_dias:nth-child(2){
-    margin-left: 60px;
-}
-.grupo_dia{
-    margin-bottom: 20px;
-}
+
 /*------------------------------estilos mensagens------------------------------ */
 .mensagem_rapida{
     position: fixed;
@@ -434,7 +425,6 @@ header .popup .popup-content .row .column .link {
     padding: 10px;
     box-sizing: border-box;
 }
-
 @media (max-width: 600px) {
     .mensagem_rapida {
       text-align: center;
@@ -587,107 +577,7 @@ header .popup .popup-content .row .column .link {
 .container-tabela table tbody .editar_apagar:hover{
     color: #000;
 }
-
-.apagar_registros{
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    background-color: #00000080;
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    pointer-events: auto;
-}
-
-.apagar_registros .card_confirmação{
-    width: 30rem;
-    position: relative;
-    background-color:#fff;
-    border-radius: .5rem;
-}
-
-.apagar_registros .card_confirmação h2{
-    text-align: center;
-    padding: 2rem;
-    margin: 0;
-    color: #197BBD;
-}
-
-.apagar_registros .card_confirmação #fechar{
-    position: absolute;
-    right: 0;
-    top: 0;
-    background:none;
-    border: none;
-    font-size: 2rem;
-    color: #000;
-    padding: 1.5rem;
-    cursor: pointer;
-    
-}
-
-.apagar_registros .card_confirmação #fechar:hover{
-    color: #197BBD;
-}
-
-.apagar_registros .card_confirmação hr{
-    width: 90%;
-    margin: 0 auto;
-}
-
-.apagar_registros .card_confirmação p{
-    padding: 2rem;
-    text-align: center;
-    font-size: 1.5rem;
-    line-height: 2rem;
-}
-
-.apagar_registros .card_confirmação .btns_apagar_registros{
-    display: flex;
-    justify-content: center;
-    padding: 0 2rem 2rem 2rem;
-}
-
-.apagar_registros .card_confirmação .btns_apagar_registros .btn_cancelar_registros{
-    background-color: #fff;
-    color: red;
-    border: solid 1px red;
-    text-decoration: none;
-    padding:.9rem;
-    border-radius: .5rem;
-    width: 7rem;
-    text-align: center;
-    margin-right: 1rem;
-    transition: all .5s ease-out;
-}
-
-.apagar_registros .card_confirmação .btns_apagar_registros .btn_cancelar_registros:hover{
-    background-color: red;
-    color: #fff;
-}
-
-.apagar_registros .card_confirmação .btns_apagar_registros .btn_apagar_registros{
-    background-color:#fff;
-    color:#197BBD;
-    border: solid 1px #197BBD;
-    text-decoration: none;
-    padding:.9rem;
-    border-radius: .5rem;
-    width: 7rem;
-    text-align: center;
-    transition: all .5s ease-out;
-}
-
-.apagar_registros .card_confirmação .btns_apagar_registros .btn_apagar_registros:hover{
-    background-color: #197BBD;
-    color: #fff;
-}
-
-/*------------------------------estilos calendário------------------------------ */
-
+/*------------------------------estilos------------------------------ */
 /*------------------------------estilos------------------------------ */
 /*------------------------------estilos------------------------------ */
 /*------------------------------estilos------------------------------ */

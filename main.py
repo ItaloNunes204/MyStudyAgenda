@@ -3,6 +3,8 @@ from flask_session import Session
 import formatador as fr
 import classes
 import banco as bd
+import agendasFormatado as ag
+import datetime
 
 
 app = Flask(__name__)
@@ -12,87 +14,101 @@ app.config['SECRET_KEY'] = "teste_palavra_chave"
 Session(app)
 
 
+#pagina de apresentação do projeto
 @app.route("/")
 def index():
     return render_template("index.html")
 
 
+#pagina de criação de conta
 @app.route("/cadastro_conta", methods=["POST", "GET"])
 def cadastro_conta():
-    if request.method == "POST":
-        nome = request.form.get("nome")
-        email = request.form.get("email")
-        senha = request.form.get("senha")
-        conf_senha = request.form.get("confsenha")
-        curso = request.form.get("curso")
-        periodo = request.form.get("periodo")
-        universidade = request.form.get("universidade")
-        if senha != conf_senha:
+    if request.method == "POST": # verifica se a requisição é do tipo POST 
+        nome = request.form.get("nome")# coleta as informações vindas do formulário 
+        email = request.form.get("email")# coleta as informações vindas do formulário 
+        senha = request.form.get("senha")# coleta as informações vindas do formulário 
+        conf_senha = request.form.get("confsenha")# coleta as informações vindas do formulário 
+        curso = request.form.get("curso")# coleta as informações vindas do formulário 
+        periodo = request.form.get("periodo")# coleta as informações vindas do formulário 
+        universidade = request.form.get("universidade")# coleta as informações vindas do formulário 
+        if senha != conf_senha:# verifica se a senhas e a confirmação da senha são diferentes
+            # envio de mensagem para o usuário e redirecionamento para a tela de cadastro  
             flash("As senhas não conferem")
             return redirect("/cadastro_conta")
-        else:
-            senha = fr.codificando(senha)
-            conta = classes.Conta(nome, senha, curso, periodo, universidade, True, True, 0, email)
-            if bd.cria_conta(conta):
+        else:# senhas iguais 
+            senha = fr.codificando(senha)#codifica a senha
+            conta = classes.Conta(nome, senha, curso, periodo, universidade, True, True, 0, email) #cria um objeto do tipo conta
+            if bd.cria_conta(conta):# verifica se foi possivel salvar o objeto no banco 
+                #É iniciado uma sessão e o usuário é redirecionado para a pagina do cliente 
                 session["name"] = email
                 return redirect('/cliente')
-            else:
+            else:#Erro ao salvar as informações no banco 
+                # envio de mensagem para o usuário e redirecionamento para a tela de cadastro 
                 flash("Erro ao cadastrar a conta")
                 return redirect("/cadastro_conta")
-    else:
+    else: # a requisição não é do tipo POST
         return render_template("cadastroConta.html")
 
 
+#pagina de login 
 @app.route("/login", methods=["POST", "GET"])
 def login():
-    if request.method == "POST":
-        email = request.form.get("email")
-        senha = request.form.get("senha")
-        senha = fr.codificando(senha)
-        if bd.login(email, senha):
+    if request.method == "POST": # verifica se a requisição é do tipo POST 
+        email = request.form.get("email")# coleta as informações vindas do formulário 
+        senha = request.form.get("senha")# coleta as informações vindas do formulário 
+        senha = fr.codificando(senha)#codifica a senha 
+        if bd.login(email, senha):# verifica se a senha e o email estão corretos 
+            #inicia uma sessão e redireciona o usuário para a pagina do cliente 
             session["name"] = email
             return redirect('/cliente')
-        else:
+        else:# informações do formulário incorretas 
+            #mensagem de erro para o usuário e redirecionamento para a pagina de login 
             flash("Conta invalida")
             return redirect('/login')
-    else:
+    else: #requisição não é do tipo POST 
         return render_template("login.html")
 
 
+#pagina do cliente 
 @app.route("/cliente")
 def cliente():
-    if not session.get("name"):
+    if not session.get("name"): #verifica se existe não existe uma sessão
+        #redireciona para o login 
         return redirect("/login")
-    else:
+    else:# existe uma sessão
+        #renderiza a pagina
         return render_template("inicio.html")
 
 
+#Ação de saída
 @app.route("/sair")
 def sair():
+    #mata a sessão e redireciona o usuário para a pagina de apresentação 
     session["name"] = None
     return redirect("/")
 
 
+#pagina de cadastro de materia 
 @app.route("/cadastro_materias", methods=["POST", "GET"])
 def cadastro_materias():
-    if not session.get("name"):
+    if not session.get("name"): # verifica se não existe uma sessão 
         return redirect("/login")
-    else:
-        if request.method == "POST":
-            email = session.get("name")
-            nome = request.form.get("nome")
-            inicio = request.form.get("inicio")
-            fim = request.form.get("fim")
-            horario = request.form.get("horario")
-            creditos = request.form.get("creditos")
-            observacao = request.form.get("observacao")
+    else:# caso exista uma sessão 
+        if request.method == "POST": # verifica se a requisição é do tipo POST 
+            email = session.get("name")# coleta as informações vindas do formulário 
+            nome = request.form.get("nome")# coleta as informações vindas do formulário 
+            inicio = request.form.get("inicio")# coleta as informações vindas do formulário 
+            fim = request.form.get("fim")# coleta as informações vindas do formulário 
+            horario = request.form.get("horario")# coleta as informações vindas do formulário 
+            creditos = request.form.get("creditos")# coleta as informações vindas do formulário 
+            observacao = request.form.get("observacao")# coleta as informações vindas do formulário 
 
-            segunda = request.form.get("segunda")
-            terca = request.form.get("terca")
-            quarta = request.form.get("quarta")
-            quinta = request.form.get("quinta")
-            sexta = request.form.get("sexta")
-            sabado = request.form.get("sabado")
+            segunda = request.form.get("segunda")# coleta as informações vindas do formulário 
+            terca = request.form.get("terca")# coleta as informações vindas do formulário 
+            quarta = request.form.get("quarta")# coleta as informações vindas do formulário 
+            quinta = request.form.get("quinta")# coleta as informações vindas do formulário 
+            sexta = request.form.get("sexta")# coleta as informações vindas do formulário 
+            sabado = request.form.get("sabado")# coleta as informações vindas do formulário 
             dias = []
             if segunda == 'on':
                 dias.append("Segunda")
@@ -122,7 +138,7 @@ def cadastro_materias():
                 else:
                     flash("Erro ao cadastrar a materia")
                     return redirect("/cadastro_materias")
-        else:
+        else:# o tipo da requisição não é POST
             return render_template("cadastroMateria.html")
 
 
@@ -147,7 +163,8 @@ def cadastro_eventos():
             inicio = fr.troca_tipo_data(inicio)
             fim = fr.troca_tipo_data(fim)
             horario = fr.troca_tipo_hora(horario)
-            novo_evento = classes.Evento(nome, inicio, fim, intervalo, observacao, True, horario, lugar, email, None)
+            novo_evento = classes.Evento(
+                nome, inicio, fim, intervalo, observacao, True, horario, lugar, email, None)
             if bd.cria_evento(novo_evento):
                 flash("Evento Cadastrado")
                 return redirect("/cliente")
@@ -385,7 +402,7 @@ def listagem_evento():
                     flash("Erro ao coletar as informações")
                     return redirect("/cliente")
                 else:
-                    return render_template("listagemEvento.html", eventos = None)
+                    return render_template("listagemEvento.html", eventos=None)
             else:
                 for evento in eventos:
                     evento.estado = fr.formata_estado_saida(evento.estado)
@@ -412,7 +429,7 @@ def listagem_evento_apagar(id_evento):
                 flash("Erro ao coletar as informações")
             else:
                 flash("Sem registros")
-            return redirect("/cliente")
+            return redirect("/listagem_evento")
         else:
             for evento in eventos:
                 evento.estado = fr.formata_estado_saida(evento.estado)
@@ -456,7 +473,8 @@ def listagem_atividades():
                     return redirect("/listagem_atividades")
             else:
                 for atividade in atividades:
-                    atividade.estado = fr.formata_estado_saida(atividade.estado)
+                    atividade.estado = fr.formata_estado_saida(
+                        atividade.estado)
 
                 if pesquisa == "":
                     return render_template("listagemAtividade.html", atividades=atividades)
@@ -481,7 +499,8 @@ def listagem_atividades():
                     return render_template("listagemAtividade.html", atividades=None)
             else:
                 for atividade in atividades:
-                    atividade.estado = fr.formata_estado_saida(atividade.estado)
+                    atividade.estado = fr.formata_estado_saida(
+                        atividade.estado)
                 return render_template("listagemAtividade.html", atividades=atividades)
 
 
@@ -507,7 +526,7 @@ def listagem_atividade_apagar(id_atividade):
                 flash("Sem registros")
             return redirect("/cliente")
         else:
-
+            dados = dados[0]
             for atividade in atividades:
                 atividade.estado = fr.formata_estado_saida(atividade.estado)
             return render_template("listagemAtividade.html", atividades=atividades, dados=dados)
@@ -602,8 +621,8 @@ def listagem_tarefa_apagar(id_tarefa):
             return redirect("/cliente")
         else:
             for tarefa in tarefas:
-                    tarefa.estado = fr.formata_estado_saida(tarefa.estado)
-            return render_template("listagemTarefa.html", tarefas=tarefas, dados=dados)
+                tarefa.estado = fr.formata_estado_saida(tarefa.estado)
+            return render_template("listagemTarefa.html", tarefas=tarefas, dados=dados[0])
 
 
 @app.route("/apagar_tarefa/<id_tarefa>", methods=["POST", "GET"])
@@ -612,7 +631,7 @@ def apagar_tarefa(id_tarefa):
         return redirect("/login")
     else:
         email = session.get("name")
-        tarefas = bd.get_tarefa_id(email, id_tarefa)
+        tarefas = bd.get_tarefas_id(email, id_tarefa)
         if bd.apagar_tarefa(tarefas[0]):
             flash("tarefa apagada")
         else:
@@ -705,7 +724,7 @@ def modifica_materia(id_materia):
                 materia.dias = dia
                 if bd.modifica_materia(materia):
                     flash("materia modificada")
-                    return redirect("/cliente")
+                    return redirect("/listagem_materia")
                 else:
                     flash("Erro ao modificar a materia")
                     return redirect("/modifica_materia/{}".format(id_materia))
@@ -737,6 +756,7 @@ def modifica_tarefa(id_tarefa):
             tipo = request.form.get("tipo")
 
             tarefa = bd.get_tarefas_id(email, id_tarefa)
+            tarefa = tarefa[0]
             tarefa.nome = nome
             tarefa.inicio = inicio
             tarefa.fim = fim
@@ -748,10 +768,13 @@ def modifica_tarefa(id_tarefa):
             if not bd.modifica_tarefa(tarefa):
                 flash("erro ao modificar a tarefa")
                 return redirect("/modifica_tarefa/{}".format(id_tarefa))
+            else:
+                flash("tarefa modificada")
+                return redirect("/listagem_tarefa")
 
         else:
             tarefa = bd.get_tarefas_id(email, id_tarefa)
-            return render_template("modificaTarefas.html", tarefa=tarefa)
+            return render_template("modificaTarefas.html", tarefa=tarefa[0])
 
 
 @app.route("/modifica_atividade/<id_atividade>", methods=["POST", "GET"])
@@ -801,6 +824,9 @@ def modifica_atividade(id_atividade):
                 return redirect("/modifica_atividade/{}".format(id_atividade))
         else:
             atividade = bd.get_atividade_id(email, id_atividade)
+            atividade = atividade[0]
+            atividade.nota = str(atividade.nota)
+            atividade.notaAtividade = str(atividade.notaAtividade)
             return render_template("modificaAtividade.html", atividade=atividade)
 
 
@@ -842,6 +868,46 @@ def modifica_evento(id_evento):
             eventos = bd.get_evento_id(email, id_evento)
             eventos[0].horario = fr.formata_hora_modifica(eventos[0].horario)
             return render_template("modificaEvento.html", evento=eventos[0])
+
+
+@app.route("/calendario", methods=["POST", "GET"])
+def calendario():
+    if not session.get("name"):
+        return redirect("/login")
+    else:
+        if request.method == "POST":
+            mes = request.form.get("meses")
+            if mes == "Janeiro":
+                mes  = 1
+            elif mes == "Fevereiro":
+                mes  = 2
+            elif mes == "Marco":
+                mes  = 3
+            elif mes == "Abril":
+                mes  = 4
+            elif mes == "Maio":
+                mes  = 5
+            elif mes == "Junho":
+                mes  = 6
+            elif mes == "Julho":
+                mes  = 7
+            elif mes == "Agosto":
+                mes  = 8
+            elif mes == "Setembro":
+                mes  = 9
+            elif mes == "Outubro":
+                mes  = 10
+            elif mes == "Novembro":
+                mes  = 11
+            elif mes == "Dezembro":
+                mes  = 11
+            data_atual = datetime.datetime.now()
+            calendario = ag.cria_mes(mes,data_atual.year)
+            return render_template("agendaMensal.html",calendario=calendario)
+        else:
+            data_atual = datetime.datetime.now()
+            calendario = ag.cria_mes(data_atual.month,data_atual.year)
+            return render_template("agendaMensal.html",calendario=calendario)
 
 
 if __name__ == "__main__":

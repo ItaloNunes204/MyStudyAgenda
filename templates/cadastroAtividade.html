@@ -9,30 +9,29 @@
                     <input type="text" id="nome" name="nome" oninput="validaNome()" required>
                     <label for="nome" id="labelNome">Nome</label>
                 </div>
+
                 <div class="label-float-constante">
                     <input type="date" id="inicio" name="inicio" oninput="validaInicio()" required>
                     <label for="inicio" id="labelInicio">Data de Inicio</label>
                 </div>
+
                 <div class="label-float-constante">
                     <input type="date" id="fim" name="fim" oninput="validaData()" required>
                     <label for="fim" id="labelFim">Data do Termino</label>
                 </div>
-                <div>
-                    <p class="justify-center">Exibir atividade ao longo do período.</p>
-                    <br>
-                    <div class="justify-center">
-                        <input type="checkbox" checked id="intervalo" name="intervalo">
-                    </div>
-                </div>
+
                 <div class="label-float-constante">
                     <input type="time" id="horario" name="horario" oninput="validaHorario()" required>
                     <label for="horario" id="labelHorario">Horario</label>
                 </div>
+
                 <div class="label-float">
                     <input type="number" step="0.01" id="nota" name="nota" oninput="validaNota()" required>
                     <label for="nota" id="labelNota">Nota da Atividadde </label>
                 </div>
+
                 <br>
+                
                 <div>
                     <select id="materia" name="materia" required>
                         <option value="">Materia da Atividade</option>
@@ -41,11 +40,21 @@
                         {%endfor%}
                     </select>
                 </div>
-                <br>
+
+                
                 <div class="label-float">
                     <input type="text" id="observacao" name="observacao" oninput="validaObservacao()" required>
                     <label for="observacao" id="labelObservacao">Observação</label>
                 </div>
+
+                <div>
+                    <p class="justify-center">Exibir atividade ao longo do período.</p>
+                    <br>
+                    <div class="justify-center">
+                        <input type="checkbox" checked id="intervalo" name="intervalo">
+                    </div>
+                </div>
+
                 <div class="justify-center">
                     <button class="btn-cadastrar" id="btn-cadastrar" name="btn-cadastrar" type="submit" onclick="trocarBotao()">Cadastrar</button>
                     <button class="btn-loading" id="btn-loading" name="btn-loading"><i class="fa fa-spinner" aria-hidden="true" id="loading"></i>Carregando</button>

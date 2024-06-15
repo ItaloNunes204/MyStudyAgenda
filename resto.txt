@@ -1,0 +1,212 @@
+main{
+    margin-bottom: 50px;
+}
+
+.container-tipo{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.tipo_esquerda, .tipo_direita {
+    width: 48%;
+}
+
+.tipos-esquerda a, .tipos-direita a{
+    color: #0d009c;
+}
+
+.tipos-esquerda a:hover,.tipos-direita a:hover{
+    color: #197BBD;
+}
+
+/* lista de dias */
+.lista-dias{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* divs de dias do cadastro */
+.dias-esquerda,.dias-direita{
+    width: 100px;
+    height: 100px;
+}
+
+/* divs de dias do cadastro */
+.dias-esquerda,.dias-direita label{
+    color: blue;
+}
+
+/* divs de dias do cadastro */
+.texto-dia{
+    color: blue;
+}
+
+.inicio {
+    border: 2px solid black;
+    background-color: rgb(181, 226, 250);
+    width: 100%;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+}
+.sobre{
+    border: 2px solid black;
+    background-color: rgb(181, 226, 250);
+    width: 100%;
+    height: 500px;
+    display: flex;
+    position: relative;
+}
+
+.sobre .sobre_informacoes{
+    position: relative;
+    top: 50%;
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    text-align: center;
+}
+
+.sobre .sobre_informacoes h1{
+    color: #0d009c;
+    font-size: 55px;
+}
+
+.sobre .sobre_informacoes h3{
+    color: #0d009c;
+    font-size: 30px;
+}
+
+.inicio h1 {
+    color: #0d009c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inicio .icone {
+    position: absolute; /* Define a posição absoluta para a div .icone */
+    bottom: 10px; /* Alinha a parte inferior da div .icone com a parte inferior da div .inicio */
+    right: 10px; /* Alinha a parte direita da div .icone com a parte direita da div .inicio */
+  
+}
+
+.inicio .icone a{
+    font-size: 2em;
+}
+
+/* tela index informações*/
+.card-info{
+    margin-top: 40px;
+    width: 100%;
+    height: auto;
+    align-items: center;
+    text-align: justify;
+    background-color: #f0f0f0;
+}
+
+.agenda{
+    display: flex;
+    justify-content: column;
+    align-items: center;
+    overflow-x: auto;
+    cursor: pointer;
+}
+
+.btn-tabela{
+    width: 60px;
+    height: 20px;
+    border-radius: 5px;
+    background-color: #579ece;
+    color: #fff;
+}
+
+.btn-tabela:hover{
+    background-color: #197BBD;
+}
+
+/* fim dos estilos das tabelas */
+
+/* inicio dos estilos das agendas */
+.agenda .description{
+    display: none;
+    position: absolute;
+    background-color: #579ece;
+    border: 1px solid  #579ece;
+    z-index: 1;
+    padding: 4px;
+    width: 150px;
+    top: -65px;
+    left: 0;
+}
+
+.agenda th:hover .description {
+    display: block;
+}
+
+.materia{
+    background-color: rgb(248, 248, 177);
+}
+
+.atividade{
+    background-color: rgb(249, 160, 160);
+}
+
+.evento{
+    background-color: rgb(142, 255, 142);
+}
+
+.tarefa{
+    background-color: rgb(141, 141, 248);
+}
+
+.card-agenda {
+    background-color: #EDEDED;
+    padding: 30px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    width: 90%;
+}
+
+.proxima-pagina{
+    background-color: #197BBD;
+}
+
+.proxima-pagina h1{
+    margin: 0 10px;
+}
+
+.btn-proximo{
+    width: 27px;
+    height: 35px; 
+    margin-right: 10px;
+    margin-left: 10px;
+    background-color: #fff;
+}
+
+.btn-proximo:hover{
+    background-color: #EDEDED;
+}
+
+.assuntos ul li{
+    list-style-type: disc;
+}
+
+  #mensagemCadastro{
+    color: blue;
+  }
+
+  #meses{
+    width: 50%;
+  }
+
+  #busca_meses{
+    width: 50%;
+    color: #fff;
+    background: #197BBD;
+    border-radius: 4px;
+  }
